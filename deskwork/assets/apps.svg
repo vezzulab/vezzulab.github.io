@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="250" viewBox="0 0 1280 250" role="img" aria-label="The four Deskwork apps: Write, Grid, Deck and Notes">
+  <defs>
+    <linearGradient id="gWrite" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+    <linearGradient id="gGrid" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#06b6d4"/></linearGradient>
+    <linearGradient id="gDeck" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f97316"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+    <linearGradient id="gNotes" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a855f7"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+    <filter id="card" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1c1b29" flood-opacity="0.16"/></filter>
+  </defs>
+  <style>
+    .t { font-family: Segoe UI, Helvetica Neue, Arial, sans-serif; }
+    .h { font-size: 26px; font-weight: 800; fill: #1c1b29; }
+    .d { font-size: 15px; fill: #6c6b80; }
+    .b { font-size: 13px; font-weight: 700; }
+  </style>
+
+  <!-- Write -->
+  <g filter="url(#card)">
+    <rect x="8" y="10" width="292" height="214" rx="24" fill="#ffffff"/>
+  </g>
+  <rect x="32" y="34" width="64" height="64" rx="20" fill="url(#gWrite)"/>
+  <g transform="translate(46,48) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></g>
+  <text class="t h" x="32" y="136">Write</text>
+  <text class="t d" x="32" y="162">Letters, reports, anything with words.</text>
+  <rect x="32" y="178" width="66" height="26" rx="13" fill="#3b82f6" fill-opacity="0.14"/>
+  <text class="t b" x="65" y="196" text-anchor="middle" fill="#3b6fe0">.docx</text>
+
+  <!-- Grid -->
+  <g filter="url(#card)">
+    <rect x="334" y="10" width="292" height="214" rx="24" fill="#ffffff"/>
+  </g>
+  <rect x="358" y="34" width="64" height="64" rx="20" fill="url(#gGrid)"/>
+  <g transform="translate(372,48) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16"/></g>
+  <text class="t h" x="358" y="136">Grid</text>
+  <text class="t d" x="358" y="162">Numbers, formulas and charts.</text>
+  <rect x="358" y="178" width="66" height="26" rx="13" fill="#10b981" fill-opacity="0.16"/>
+  <text class="t b" x="391" y="196" text-anchor="middle" fill="#0c9468">.xlsx</text>
+
+  <!-- Deck -->
+  <g filter="url(#card)">
+    <rect x="660" y="10" width="292" height="214" rx="24" fill="#ffffff"/>
+  </g>
+  <rect x="684" y="34" width="64" height="64" rx="20" fill="url(#gDeck)"/>
+  <g transform="translate(698,48) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></g>
+  <text class="t h" x="684" y="136">Deck</text>
+  <text class="t d" x="684" y="162">Slides that look great by default.</text>
+  <rect x="684" y="178" width="66" height="26" rx="13" fill="#f97316" fill-opacity="0.16"/>
+  <text class="t b" x="717" y="196" text-anchor="middle" fill="#d9600a">.pptx</text>
+
+  <!-- Notes -->
+  <g filter="url(#card)">
+    <rect x="986" y="10" width="292" height="214" rx="24" fill="#ffffff"/>
+  </g>
+  <rect x="1010" y="34" width="64" height="64" rx="20" fill="url(#gNotes)"/>
+  <g transform="translate(1024,48) scale(1.5)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16H6z"/><path d="M9 4v16"/><path d="M12 9h3M12 13h3"/></g>
+  <text class="t h" x="1010" y="136">Notes</text>
+  <text class="t d" x="1010" y="162">Capture ideas, lists and sketches.</text>
+  <rect x="1010" y="178" width="104" height="26" rx="13" fill="#a855f7" fill-opacity="0.16"/>
+  <text class="t b" x="1062" y="196" text-anchor="middle" fill="#8a3fd1">Markdown</text>
+</svg>

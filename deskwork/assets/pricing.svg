@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="280" viewBox="0 0 1280 280" role="img" aria-label="Pricing: 7-day trial, 19.99 dollars one time for 2 machines, 4.99 dollars per extra machine up to 5">
+  <defs>
+    <linearGradient id="p1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+    <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+    <linearGradient id="p3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f97316"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1c1b29" flood-opacity="0.22"/></filter>
+  </defs>
+  <style>
+    .t { font-family: Segoe UI, Helvetica Neue, Arial, sans-serif; fill: #ffffff; }
+    .eyebrow { font-size: 15px; font-weight: 700; letter-spacing: 1.4px; fill-opacity: 0.85; }
+    .big { font-size: 66px; font-weight: 800; letter-spacing: -2px; }
+    .mid { font-size: 20px; font-weight: 600; }
+    .sm { font-size: 16px; fill-opacity: 0.9; }
+  </style>
+
+  <g filter="url(#sh)">
+    <rect x="10" y="10" width="396" height="240" rx="28" fill="url(#p1)"/>
+    <rect x="442" y="10" width="396" height="240" rx="28" fill="url(#p2)"/>
+    <rect x="874" y="10" width="396" height="240" rx="28" fill="url(#p3)"/>
+  </g>
+
+  <text class="t eyebrow" x="46" y="60">START</text>
+  <text class="t big" x="46" y="136">7 days</text>
+  <text class="t mid" x="46" y="176">Free trial, everything unlocked</text>
+  <text class="t sm" x="46" y="206">No card needed to start</text>
+
+  <text class="t eyebrow" x="478" y="60">THE SUITE</text>
+  <text class="t big" x="478" y="136">$19.99</text>
+  <text class="t mid" x="478" y="176">One time. Covers 2 machines.</text>
+  <text class="t sm" x="478" y="206">Write, Grid, Deck and Notes. No subscription.</text>
+
+  <text class="t eyebrow" x="910" y="60">EXTRA MACHINES</text>
+  <text class="t big" x="910" y="136">+$4.99</text>
+  <text class="t mid" x="910" y="176">Per extra machine, up to 3 more</text>
+  <text class="t sm" x="910" y="206">Up to 5 machines on one license</text>
+</svg>
