@@ -3,155 +3,321 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deskwork: a fast, beautiful office suite</title>
-<meta name="description" content="Deskwork is an early-stage office suite for Windows and Linux: Write, Grid, Deck and Notes in one fast, beautiful glass interface, with NAS and cloud sync.">
+<title>Deskwork: the office suite, reimagined</title>
+<meta name="description" content="Deskwork is a fast, beautiful office suite for Windows, Linux and macOS: Write, Grid, Deck and Notes in one refined interface. Open standard formats, documents that keep their structure, and no telemetry.">
 <meta property="og:title" content="Deskwork">
-<meta property="og:description" content="A fast, beautiful office suite for Windows and Linux. Coming soon.">
+<meta property="og:description" content="The office suite, reimagined. Write and Grid are working; Deck and Notes are on the way.">
 <meta property="og:image" content="assets/screens/home.png">
-<meta name="theme-color" content="#6366f1">
+<meta name="theme-color" content="#07080f">
 <link rel="alternate" hreflang="en" href="?lang=en">
 <link rel="alternate" hreflang="es" href="?lang=es">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial' font-weight='800' font-size='38' fill='white'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f1e2bd'/%3E%3Cstop offset='1' stop-color='%23b58a4a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%2307080f'/%3E%3Crect x='3' y='3' width='58' height='58' rx='15' fill='none' stroke='url(%23g)' stroke-width='3'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='38' fill='url(%23g)'%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#f6f7ff; --fg:#1c1b29; --muted:#5f5e78; --card:rgba(255,255,255,.72); --edge:rgba(255,255,255,.9); --line:rgba(40,40,80,.10);
-    --shadow:rgba(40,40,90,.16); --a1:#6366f1; --a2:#06b6d4;
+    --bg:#07080f; --bg2:#0d0f1a; --fg:#f3efe6; --muted:#a09fb4; --faint:#6d6c82;
+    --card:rgba(255,255,255,.035); --card2:rgba(255,255,255,.06); --edge:rgba(255,255,255,.09); --edge2:rgba(255,255,255,.16);
+    --gold1:#f6e7c1; --gold2:#d6b46f; --gold3:#a8803f; --iris:#7c6cf6; --teal:#3fd0d4;
+    --shadow:rgba(0,0,0,.6);
+    --gold:linear-gradient(120deg,var(--gold1),var(--gold2) 45%,var(--gold3));
+    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+    --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#0c0d18; --fg:#eceaf8; --muted:#a3a1be; --card:rgba(30,32,52,.7); --edge:rgba(255,255,255,.10); --line:rgba(255,255,255,.10); --shadow:rgba(0,0,0,.55); }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg:#faf7f0; --bg2:#f2ede1; --fg:#17151f; --muted:#5d5a6e; --faint:#8b879c;
+      --card:rgba(255,255,255,.7); --card2:rgba(255,255,255,.9); --edge:rgba(40,30,10,.09); --edge2:rgba(40,30,10,.18);
+      --gold1:#c9a45a; --gold2:#a8803f; --gold3:#7d5a22; --shadow:rgba(60,40,10,.22);
+    }
   }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; }
-  body { font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--fg); line-height:1.6;
-    background-image:
-      radial-gradient(900px 500px at 8% -5%, rgba(99,102,241,.22), transparent 60%),
-      radial-gradient(800px 500px at 95% 12%, rgba(6,182,212,.18), transparent 60%),
-      radial-gradient(800px 500px at 50% 100%, rgba(236,72,153,.12), transparent 60%);
-    background-repeat:no-repeat; }
+  body { font-family:var(--sans); background:var(--bg); color:var(--fg); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(1100px 620px at 12% -8%, rgba(124,108,246,.20), transparent 62%),
+      radial-gradient(900px 560px at 92% 4%, rgba(214,180,111,.14), transparent 60%),
+      radial-gradient(900px 600px at 50% 108%, rgba(63,208,212,.09), transparent 60%); }
   a { color:inherit; }
-  .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
-  nav { display:flex; align-items:center; justify-content:space-between; padding:22px 0; gap:16px; }
-  .brand { display:flex; align-items:center; gap:12px; font-weight:800; font-size:20px; letter-spacing:-.3px; text-decoration:none; }
-  .logo { width:36px; height:36px; border-radius:11px; background:linear-gradient(135deg,var(--a1),var(--a2)); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; box-shadow:0 8px 20px rgba(99,102,241,.4); }
-  .right { display:flex; align-items:center; gap:26px; }
-  nav .links { display:flex; gap:26px; font-weight:600; font-size:15px; color:var(--muted); }
-  nav .links a { text-decoration:none; } nav .links a:hover { color:var(--fg); }
-  .lang { display:flex; padding:3px; border-radius:999px; background:var(--card); border:1px solid var(--edge); box-shadow:0 6px 18px var(--shadow); }
-  .lang button { font:inherit; font-size:13px; font-weight:800; letter-spacing:.5px; border:0; background:transparent; color:var(--muted); padding:6px 14px; border-radius:999px; cursor:pointer; }
-  .lang button[aria-pressed="true"] { color:#fff; background:linear-gradient(135deg,#6366f1,#06b6d4); box-shadow:0 4px 12px rgba(99,102,241,.4); }
-  .hero { text-align:center; padding:56px 0 40px; }
-  .pill { display:inline-block; padding:6px 16px; border-radius:999px; background:var(--card); border:1px solid var(--edge); box-shadow:0 6px 18px var(--shadow); font-size:13px; font-weight:700; color:var(--muted); margin-bottom:22px; }
-  h1 { font-size:clamp(38px,7vw,74px); line-height:1.05; font-weight:800; letter-spacing:-2.4px; max-width:920px; margin:0 auto; }
-  h1 span { background:linear-gradient(90deg,#6366f1,#06b6d4 50%,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .lead { max-width:660px; margin:22px auto 0; font-size:19px; color:var(--muted); }
-  .cta { margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .btn { display:inline-flex; align-items:center; gap:8px; height:48px; padding:0 24px; border-radius:24px; font-weight:700; font-size:15px; text-decoration:none; border:1px solid var(--line); background:var(--card); }
-  .btn.primary { color:#fff; border:0; background:linear-gradient(135deg,#6366f1,#8b5cf6 55%,#06b6d4); box-shadow:0 12px 28px rgba(99,102,241,.4); }
-  .shot { margin:48px auto 0; max-width:1040px; border-radius:22px; padding:10px; background:var(--card); border:1px solid var(--edge); box-shadow:0 30px 80px var(--shadow); }
-  .shot img { display:block; width:100%; height:auto; border-radius:14px; }
-  section { padding:72px 0 8px; }
-  h2 { font-size:clamp(28px,4vw,42px); letter-spacing:-1.2px; font-weight:800; text-align:center; }
-  .sub { text-align:center; color:var(--muted); max-width:640px; margin:12px auto 0; }
-  .banner { margin-top:34px; }
-  .banner img { width:100%; height:auto; display:block; }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px; }
-  .card { background:var(--card); border:1px solid var(--edge); border-radius:20px; padding:26px; box-shadow:0 10px 30px var(--shadow); transition:transform .25s; }
-  .card:hover { transform:translateY(-4px); }
-  .ic { width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; color:#fff; box-shadow:0 8px 18px var(--shadow); }
-  .ic svg { width:24px; height:24px; fill:none; stroke:#fff; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-  .card h3 { font-size:19px; font-weight:800; letter-spacing:-.3px; margin-bottom:6px; } .card p { color:var(--muted); font-size:15px; }
-  .shots2 { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:34px; }
-  .shots2 .shot { margin:0; }
-  .cap { text-align:center; color:var(--muted); font-size:14px; margin-top:10px; font-weight:600; }
-  .pricing img { width:100%; height:auto; display:block; margin-top:34px; }
-  .note { text-align:center; color:var(--muted); font-size:14px; margin-top:14px; }
-  .final { text-align:center; margin:72px 0 0; padding:56px 24px; border-radius:28px; color:#fff; background:linear-gradient(135deg,#4f46e5,#7c3aed 55%,#06b6d4); box-shadow:0 24px 60px rgba(99,102,241,.4); }
-  .final h2 { color:#fff; } .final p { opacity:.9; max-width:560px; margin:12px auto 0; }
-  footer { padding:44px 0 56px; text-align:center; color:var(--muted); font-size:14px; }
-  @media (max-width:860px) { .grid { grid-template-columns:1fr; } .shots2 { grid-template-columns:1fr; } nav .links { display:none; } }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 28px; }
+  .gold { background:var(--gold); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .serif { font-family:var(--serif); font-weight:400; }
+
+  /* navigation */
+  header.top { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4);
+    background:color-mix(in srgb, var(--bg) 70%, transparent); border-bottom:1px solid var(--edge); }
+  nav { display:flex; align-items:center; justify-content:space-between; height:68px; gap:16px; }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-weight:700; letter-spacing:.2px; font-size:18px; }
+  .logo { width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-family:var(--serif); font-size:23px; line-height:1; color:var(--gold2);
+    background:var(--bg); border:1px solid transparent;
+    background-image:linear-gradient(var(--bg),var(--bg)), var(--gold); background-origin:border-box; background-clip:padding-box, border-box; }
+  .right { display:flex; align-items:center; gap:28px; }
+  nav .links { display:flex; gap:28px; font-weight:500; font-size:14px; color:var(--muted); }
+  nav .links a { text-decoration:none; transition:color .2s; } nav .links a:hover { color:var(--fg); }
+  .lang { display:flex; padding:3px; border-radius:999px; border:1px solid var(--edge2); }
+  .lang button { font:inherit; font-size:12px; font-weight:700; letter-spacing:.8px; border:0; background:transparent; color:var(--muted); padding:5px 13px; border-radius:999px; cursor:pointer; }
+  .lang button[aria-pressed="true"] { color:#1b1406; background:var(--gold); }
+
+  /* hero */
+  .hero { text-align:center; padding:92px 0 30px; position:relative; }
+  .pill { display:inline-flex; align-items:center; gap:10px; padding:7px 16px; border-radius:999px; border:1px solid var(--edge2); background:var(--card); font-size:12.5px; font-weight:600; letter-spacing:.4px; color:var(--muted); }
+  .pill i { width:7px; height:7px; border-radius:50%; background:var(--gold2); box-shadow:0 0 12px var(--gold2); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(46px,8.4vw,116px); line-height:.98; letter-spacing:-2px; max-width:1000px; margin:28px auto 0; }
+  h1 em { font-style:italic; }
+  .lead { max-width:640px; margin:28px auto 0; font-size:clamp(16px,1.6vw,19px); color:var(--muted); }
+  .cta { margin-top:38px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:10px; height:52px; padding:0 30px; border-radius:999px; font-weight:600; font-size:15px; text-decoration:none; border:1px solid var(--edge2); background:var(--card); transition:transform .2s, border-color .2s; }
+  .btn:hover { transform:translateY(-2px); border-color:var(--gold2); }
+  .btn.primary { color:#1b1406; border:0; background:var(--gold); box-shadow:0 14px 40px rgba(214,180,111,.28); }
+  .stage { position:relative; margin:76px auto 0; max-width:1080px; perspective:1800px; }
+  .stage::before { content:""; position:absolute; inset:8% 6% -4%; background:radial-gradient(60% 60% at 50% 50%, rgba(214,180,111,.30), rgba(124,108,246,.18) 55%, transparent 75%); filter:blur(60px); z-index:-1; }
+  .frame { border-radius:22px; padding:9px; background:linear-gradient(160deg,var(--edge2),var(--edge)); border:1px solid var(--edge2); box-shadow:0 50px 120px var(--shadow), inset 0 1px 0 rgba(255,255,255,.12);
+    transform:rotateX(5deg); transform-origin:50% 100%; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+  .stage:hover .frame { transform:rotateX(0deg); }
+  .frame img { display:block; width:100%; height:auto; border-radius:14px; }
+
+  /* stats */
+  .stats { display:grid; grid-template-columns:repeat(4,1fr); margin:80px 0 0; border:1px solid var(--edge); border-radius:24px; background:var(--card); overflow:hidden; }
+  .stat { padding:30px 26px; border-right:1px solid var(--edge); text-align:center; }
+  .stat:last-child { border-right:0; }
+  .stat b { display:block; white-space:nowrap; font-family:var(--serif); font-weight:400; font-size:clamp(36px,4.4vw,56px); line-height:1.05; }
+  .stat span { display:block; margin-top:8px; font-size:13px; color:var(--muted); }
+
+  /* sections */
+  section { padding:130px 0 0; }
+  .eyebrow { display:block; text-align:center; font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold2); margin-bottom:18px; }
+  h2 { font-family:var(--serif); font-weight:400; text-align:center; font-size:clamp(36px,5.6vw,72px); line-height:1.04; letter-spacing:-1.2px; max-width:860px; margin:0 auto; }
+  h2 em { font-style:italic; }
+  .sub { text-align:center; color:var(--muted); max-width:620px; margin:22px auto 0; font-size:17px; }
+
+  /* bento */
+  .bento { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; margin-top:56px; }
+  .tile { position:relative; overflow:hidden; border-radius:26px; padding:34px; background:var(--card); border:1px solid var(--edge); transition:border-color .3s, transform .3s; }
+  .tile:hover { border-color:var(--edge2); transform:translateY(-3px); }
+  .tile::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(420px 220px at var(--mx,80%) var(--my,0%), rgba(214,180,111,.10), transparent 70%); opacity:0; transition:opacity .3s; }
+  .tile:hover::after { opacity:1; }
+  .s2 { grid-column:span 2; } .s3 { grid-column:span 3; } .s4 { grid-column:span 4; }
+  .tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; padding:4px 11px; border-radius:999px; border:1px solid var(--edge2); color:var(--muted); }
+  .tag.live { color:var(--gold1); border-color:rgba(214,180,111,.55); background:rgba(214,180,111,.10); }
+  @media (prefers-color-scheme: light) { .tag.live { color:var(--gold3); } }
+  .tile h3 { font-family:var(--serif); font-weight:400; font-size:34px; line-height:1.1; margin:18px 0 10px; letter-spacing:-.4px; }
+  .tile p { color:var(--muted); font-size:15px; }
+  .glyph { width:48px; height:48px; border-radius:14px; display:grid; place-items:center; border:1px solid var(--edge2); background:var(--card2); }
+  .glyph svg { width:24px; height:24px; fill:none; stroke:var(--gold2); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .tile.soon { opacity:.78; }
+  .meter { margin-top:26px; display:grid; gap:12px; }
+  .row { display:grid; grid-template-columns:78px 1fr 70px; align-items:center; gap:14px; font-size:13px; color:var(--muted); }
+  .bar { height:8px; border-radius:99px; background:var(--edge); overflow:hidden; }
+  .bar i { display:block; height:100%; border-radius:99px; background:var(--gold); width:0; transition:width 1.4s cubic-bezier(.2,.7,.2,1); }
+  .bar i.old { background:var(--faint); }
+  .row b { color:var(--fg); font-weight:600; text-align:right; font-variant-numeric:tabular-nums; }
+
+  /* gallery */
+  .gallery { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:56px; }
+  .gallery figure .frame { transform:none; }
+  .gallery figcaption { text-align:center; color:var(--muted); font-size:14px; margin-top:14px; letter-spacing:.3px; }
+  .note { text-align:center; color:var(--faint); font-size:13px; margin-top:26px; }
+
+  /* pricing */
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:56px; align-items:stretch; }
+  .plan { border-radius:28px; padding:38px 32px; background:var(--card); border:1px solid var(--edge); display:flex; flex-direction:column; }
+  .plan.hot { border:1px solid transparent; background-image:linear-gradient(var(--bg2),var(--bg2)), var(--gold); background-origin:border-box; background-clip:padding-box, border-box; box-shadow:0 30px 90px rgba(214,180,111,.14); }
+  .plan h3 { font-size:13px; font-weight:700; letter-spacing:2.4px; text-transform:uppercase; color:var(--gold2); }
+  .price { font-family:var(--serif); font-size:68px; line-height:1; margin:18px 0 6px; letter-spacing:-1px; }
+  .price small { font-family:var(--sans); font-size:14px; color:var(--muted); letter-spacing:0; }
+  .plan ul { list-style:none; padding:0; margin:22px 0 0; display:grid; gap:12px; color:var(--muted); font-size:14.5px; }
+  .plan li { padding-left:26px; position:relative; }
+  .plan li::before { content:""; position:absolute; left:2px; top:.5em; width:11px; height:6px; border-left:1.6px solid var(--gold2); border-bottom:1.6px solid var(--gold2); transform:rotate(-45deg); }
+
+  .final { margin:140px 0 0; text-align:center; padding:96px 28px; border-radius:36px; border:1px solid var(--edge2); position:relative; overflow:hidden;
+    background:radial-gradient(70% 90% at 50% 0%, rgba(214,180,111,.20), transparent 70%), radial-gradient(60% 80% at 10% 100%, rgba(124,108,246,.20), transparent 70%), var(--card); }
+  .final h2 { max-width:760px; }
+  .final p { max-width:520px; margin:22px auto 0; color:var(--muted); }
+  footer { padding:70px 0 64px; text-align:center; color:var(--faint); font-size:13px; }
+  footer .brand { justify-content:center; margin-bottom:16px; color:var(--fg); }
+
+  .rv { opacity:0; transform:translateY(28px); transition:opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity:1; transform:none; transition:none; } .frame { transform:none; } html { scroll-behavior:auto; } }
+  @media (max-width:900px) {
+    nav .links { display:none; } section { padding-top:96px; }
+    .stats { grid-template-columns:repeat(2,1fr); } .stat:nth-child(2) { border-right:0; } .stat:nth-child(-n+2) { border-bottom:1px solid var(--edge); }
+    .bento, .gallery, .plans { grid-template-columns:1fr; } .s2, .s3, .s4 { grid-column:auto; }
+    .hero { padding-top:64px; }
+    .wrap { padding:0 18px; } .pill { max-width:100%; text-align:center; line-height:1.4; }
+    .btn { height:48px; padding:0 22px; } .tile { padding:26px; } .row { grid-template-columns:56px 1fr 64px; }
+    .final { padding:64px 20px; } .stat { padding:22px 12px; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <a class="brand" href="#top"><span class="logo">D</span>Deskwork</a>
-    <div class="right">
-      <div class="links">
-        <a href="#apps" data-i18n="nav_apps">Apps</a>
-        <a href="#why" data-i18n="nav_why">Why Deskwork</a>
-        <a href="#look" data-i18n="nav_look">Look</a>
-        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+<header class="top">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#top"><span class="logo">D</span>Deskwork</a>
+      <div class="right">
+        <div class="links">
+          <a href="#suite" data-i18n="nav_suite">The suite</a>
+          <a href="#craft" data-i18n="nav_craft">Craft</a>
+          <a href="#look" data-i18n="nav_look">Interface</a>
+          <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        </div>
+        <div class="lang" role="group" aria-label="Language / Idioma">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
       </div>
-      <div class="lang" role="group" aria-label="Language / Idioma">
-        <button type="button" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="es" aria-pressed="false">ES</button>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+</header>
 
-  <header class="hero" id="top">
-    <span class="pill" data-i18n="pill">Early development. Coming soon.</span>
-    <h1 data-i18n-html="h1">The office suite that feels <span>fast, calm and beautiful.</span></h1>
-    <p class="lead" data-i18n="lead">Write, Grid, Deck and Notes in one glass interface. No ribbon, no bloat, and your files stay standard Office formats. Built for Windows and Linux.</p>
+<div class="wrap" id="top">
+  <div class="hero">
+    <span class="pill"><i></i><span data-i18n="pill">Version 0.2 &middot; Write and Grid are working</span></span>
+    <h1 data-i18n-html="h1">The office suite, <em class="gold">reimagined.</em></h1>
+    <p class="lead" data-i18n="lead">Write, Grid, Deck and Notes in one refined interface. Open standard formats, documents that keep their structure wherever they came from, and not a single byte of telemetry.</p>
     <div class="cta">
-      <a class="btn primary" href="#apps" data-i18n="cta1">See the apps</a>
+      <a class="btn primary" href="#suite" data-i18n="cta1">Explore the suite</a>
       <a class="btn" href="#look" data-i18n="cta2">See the interface</a>
     </div>
-    <div class="shot">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/screens/home-dark.png">
-        <img src="assets/screens/home.png" alt="Deskwork home screen with Write, Grid, Deck and Notes" data-i18n-alt="alt_home">
-      </picture>
+    <div class="stage rv">
+      <div class="frame">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/screens/home-dark.png">
+          <img src="assets/screens/home.png" alt="Deskwork home screen with Write, Grid, Deck and Notes" data-i18n-alt="alt_home">
+        </picture>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <section id="apps">
-    <h2 data-i18n="apps_h">Four apps. One consistent suite.</h2>
-    <p class="sub" data-i18n="apps_sub">Each app is its own small, fast program that shares the same design, the same shortcuts and the same Ctrl+K command search.</p>
-    <div class="banner"><img src="assets/apps.svg" data-img="apps" alt="Write, Grid, Deck and Notes" data-i18n-alt="alt_apps"></div>
+  <div class="stats rv">
+    <div class="stat"><b class="gold">386<span style="font-size:.5em"> / 496</span></b><span data-i18n="st1">real-world files round-trip cleanly, with the rest documented</span></div>
+    <div class="stat"><b class="gold">3.1 s</b><span data-i18n="st2">to open a 500,000-row workbook</span></div>
+    <div class="stat"><b class="gold">0</b><span data-i18n="st3">telemetry, document uploads or ads</span></div>
+    <div class="stat"><b class="gold">$19.99</b><span data-i18n="st4">once, for two machines. No subscription</span></div>
+  </div>
+
+  <section id="suite">
+    <span class="eyebrow" data-i18n="suite_e">The suite</span>
+    <h2 data-i18n-html="suite_h">Four apps. <em>One</em> consistent, considered whole.</h2>
+    <p class="sub" data-i18n="suite_sub">One window, one design language, one Ctrl+K command search. Switch apps from the rail without losing your place.</p>
+    <div class="bento">
+      <div class="tile s3 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg></span>
+        <div style="margin-top:18px"><span class="tag live" data-i18n="live">Working today</span></div>
+        <h3>Write</h3>
+        <p data-i18n="write_p">Documents with a tabbed ribbon, interactive rulers, styles, lists, images and tables you can drag to size. Opens and saves .docx and keeps everything it does not edit.</p>
+      </div>
+      <div class="tile s3 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 10h16M10 4v16"/></svg></span>
+        <div style="margin-top:18px"><span class="tag live" data-i18n="live2">Working today</span></div>
+        <h3>Grid</h3>
+        <p data-i18n="grid_p">Spreadsheets with about 110 functions, number formats, charts and undo. Opens and saves .xlsx, and loads huge workbooks in seconds.</p>
+      </div>
+      <div class="tile s3 soon rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+        <div style="margin-top:18px"><span class="tag" data-i18n="soon">In design</span></div>
+        <h3>Deck</h3>
+        <p data-i18n="deck_p">Presentations that look composed by default, with animations that survive a round trip through .pptx.</p>
+      </div>
+      <div class="tile s3 soon rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <div style="margin-top:18px"><span class="tag" data-i18n="soon2">In design</span></div>
+        <h3>Notes</h3>
+        <p data-i18n="notes_p">Notebooks, checklists and sketches in plain Markdown plus assets, so your notes are always yours.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="why">
-    <h2 data-i18n="why_h">Made to get out of your way</h2>
-    <p class="sub" data-i18n="why_sub">The things that make big suites heavy are left out. The things you actually use are made better.</p>
-    <div class="grid">
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#6366f1,#06b6d4)"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h10M5 17h14"/></svg></div><h3 data-i18n="c1_t">Deskbar, not a ribbon</h3><p data-i18n="c1_p">One slim bar that changes with your selection and learns the commands you use most. Everything else is one Ctrl+K away.</p></div>
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)"><svg viewBox="0 0 24 24"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg></div><h3 data-i18n="c2_t">Light and quick</h3><p data-i18n="c2_p">Separate small processes, no background services, and a Reduce effects mode for modest hardware.</p></div>
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="6" rx="2"/><rect x="4" y="13" width="16" height="6" rx="2"/><path d="M8 8h.01M8 16h.01"/></svg></div><h3 data-i18n="c3_t">Your storage, your rules</h3><p data-i18n="c3_p">Sync and back up to your NAS or cloud storage. Conflicts keep both copies, never a silent overwrite.</p></div>
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#f97316,#ec4899)"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg></div><h3 data-i18n="c4_t">Open file formats</h3><p data-i18n="c4_p">Documents are plain .docx, .xlsx and .pptx, so they open anywhere and never lock you in.</p></div>
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#a855f7,#ec4899)"><svg viewBox="0 0 24 24"><path d="M5 19V9M10 19V5M15 19v-8M20 19V7"/></svg></div><h3 data-i18n="c5_t">Precision tools</h3><p data-i18n="c5_p">Rulers, margins, indents, tabs, guides and snapping, the details that serious work needs.</p></div>
-      <div class="card"><div class="ic" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3 data-i18n="c6_t">Private by design</h3><p data-i18n="c6_p">No telemetry and no document uploads. The license check sends only what it needs to confirm your purchase.</p></div>
+  <section id="craft">
+    <span class="eyebrow" data-i18n="craft_e">Craft</span>
+    <h2 data-i18n-html="craft_h">Built for people who <em>care how it feels.</em></h2>
+    <p class="sub" data-i18n="craft_sub">The parts big suites get wrong are where we spend the effort.</p>
+    <div class="bento">
+      <div class="tile s4 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg></span>
+        <h3 data-i18n="f1_t">Your documents keep their shape</h3>
+        <p data-i18n="f1_p">Open a file made on another system and it comes back with its styles, numbering, headers, comments, fields, tracked changes and drawings intact, including the parts Deskwork does not edit. We test against hundreds of real files and publish what still falls short.</p>
+        <div class="meter" id="m1">
+          <div class="row"><span>.docx</span><div class="bar"><i data-w="67"></i></div><b>87 / 130</b></div>
+          <div class="row"><span>.xlsx</span><div class="bar"><i data-w="82"></i></div><b>299 / 366</b></div>
+        </div>
+      </div>
+      <div class="tile s2 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg></span>
+        <h3 data-i18n="f2_t">Fast on big files</h3>
+        <p data-i18n="f2_p">A 500,000-row workbook, measured.</p>
+        <div class="meter" id="m2">
+          <div class="row"><span data-i18n="before">Before</span><div class="bar"><i class="old" data-w="100"></i></div><b>20.7 s</b></div>
+          <div class="row"><span data-i18n="now">Now</span><div class="bar"><i data-w="21"></i></div><b>4.3 s</b></div>
+        </div>
+        <p style="margin-top:12px;font-size:12.5px;color:var(--faint)" data-i18n="f2_n">Saving. Opening takes 3.1 s.</p>
+      </div>
+      <div class="tile s2 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M3 8h18M3 8v8M21 8v8M7 8v3M11 8v2M15 8v3M19 8v2"/></svg></span>
+        <h3 data-i18n="f3_t">Precision, by hand</h3>
+        <p data-i18n="f3_p">Drag margins and indents on the ruler. Drag a table's borders and corner to size it, the way you expect.</p>
+      </div>
+      <div class="tile s2 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
+        <h3 data-i18n="f4_t">Macros, handled with care</h3>
+        <p data-i18n="f4_p">Macro projects are kept intact, can be inspected, and run only when you allow them. They are off by default.</p>
+      </div>
+      <div class="tile s2 rv">
+        <span class="glyph"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+        <h3 data-i18n="f5_t">Private by design</h3>
+        <p data-i18n="f5_p">No telemetry and no document uploads. The license check sends only what it needs to confirm your purchase.</p>
+      </div>
     </div>
   </section>
 
   <section id="look">
-    <h2 data-i18n="look_h">A calm, layered interface</h2>
-    <p class="sub" data-i18n="look_sub">Frosted glass, a colour for each app, light and dark themes, and a strictly symmetrical layout.</p>
-    <div class="shots2">
-      <div><div class="shot"><img src="assets/screens/write.png" alt="Deskwork Write" loading="lazy"></div><p class="cap">Write</p></div>
-      <div><div class="shot"><img src="assets/screens/grid.png" alt="Deskwork Grid" loading="lazy"></div><p class="cap">Grid</p></div>
-      <div><div class="shot"><img src="assets/screens/deck-dark.png" alt="Deskwork Deck in dark mode" data-i18n-alt="alt_deck" loading="lazy"></div><p class="cap" data-i18n="cap_deck">Deck, dark theme</p></div>
-      <div><div class="shot"><img src="assets/screens/notes.png" alt="Deskwork Notes" loading="lazy"></div><p class="cap">Notes</p></div>
+    <span class="eyebrow" data-i18n="look_e">Interface</span>
+    <h2 data-i18n-html="look_h">Calm, layered, <em>symmetrical.</em></h2>
+    <p class="sub" data-i18n="look_sub">Frosted glass, one accent colour per app, light and dark themes, and an 8 px grid that holds every edge in line.</p>
+    <div class="gallery">
+      <figure class="rv"><div class="frame"><img src="assets/screens/write.png" alt="Deskwork Write" loading="lazy"></div><figcaption>Write</figcaption></figure>
+      <figure class="rv"><div class="frame"><img src="assets/screens/grid.png" alt="Deskwork Grid" loading="lazy"></div><figcaption>Grid</figcaption></figure>
+      <figure class="rv"><div class="frame"><img src="assets/screens/deck-dark.png" alt="Deskwork Deck, design preview, dark theme" data-i18n-alt="alt_deck" loading="lazy"></div><figcaption data-i18n="cap_deck">Deck, design preview</figcaption></figure>
+      <figure class="rv"><div class="frame"><img src="assets/screens/notes.png" alt="Deskwork Notes, design preview" data-i18n-alt="alt_notes" loading="lazy"></div><figcaption data-i18n="cap_notes">Notes, design preview</figcaption></figure>
     </div>
-    <p class="note" data-i18n="look_note">Design previews. The apps are in early development and not yet available.</p>
+    <p class="note" data-i18n="look_note">Images are design previews and may differ from the current build. Deck and Notes are not built yet.</p>
   </section>
 
-  <section id="pricing" class="pricing">
-    <h2 data-i18n="pricing_h">Simple pricing</h2>
-    <p class="sub" data-i18n="pricing_sub">Planned launch pricing. Pay once, no subscription.</p>
-    <img src="assets/pricing.svg" data-img="pricing" alt="7-day free trial, $19.99 one time for 2 machines, $4.99 per extra machine up to 5" data-i18n-alt="alt_pricing">
-    <p class="note" data-i18n="pricing_note">Planned and subject to change before release.</p>
+  <section id="pricing">
+    <span class="eyebrow" data-i18n="pr_e">Pricing</span>
+    <h2 data-i18n-html="pr_h">Pay once. <em>Own it.</em></h2>
+    <p class="sub" data-i18n="pr_sub">Planned launch pricing, with no subscription and no upsell. Subject to change before release.</p>
+    <div class="plans">
+      <div class="plan rv">
+        <h3 data-i18n="p1_h">Trial</h3>
+        <div class="price">$0<small> / <span data-i18n="p1_u">7 days</span></small></div>
+        <ul><li data-i18n="p1_a">Every feature, fully unlocked</li><li data-i18n="p1_b">A clear countdown, never a surprise</li><li data-i18n="p1_c">Your files are never touched</li></ul>
+      </div>
+      <div class="plan hot rv">
+        <h3 data-i18n="p2_h">Deskwork</h3>
+        <div class="price gold">$19.99<small> / <span data-i18n="p2_u">once</span></small></div>
+        <ul><li data-i18n="p2_a">Write, Grid, Deck and Notes</li><li data-i18n="p2_b">Two machines included</li><li data-i18n="p2_c">30 days of offline use between license checks</li></ul>
+      </div>
+      <div class="plan rv">
+        <h3 data-i18n="p3_h">Extra machine</h3>
+        <div class="price">$4.99<small> / <span data-i18n="p3_u">each</span></small></div>
+        <ul><li data-i18n="p3_a">Add up to three more machines</li><li data-i18n="p3_b">Five machines in total</li><li data-i18n="p3_c">Attached to your license</li></ul>
+      </div>
+    </div>
   </section>
 
-  <div class="final">
-    <h2 data-i18n="final_h">Coming to Windows and Linux</h2>
-    <p data-i18n="final_p">Deskwork is being built right now. This page will announce the first release.</p>
+  <div class="final rv">
+    <span class="eyebrow" data-i18n="fin_e">Where we are</span>
+    <h2 data-i18n-html="final_h">Being built, <em>carefully.</em></h2>
+    <p data-i18n="final_p">Write and Grid work today in development builds on Windows. Linux and macOS, Deck, Notes and cloud and NAS sync are next. This page will announce the first release.</p>
   </div>
 
   <footer>
-    <p data-i18n="footer">&copy; 2026 Vezzulab. All rights reserved. Deskwork is in early development; features and pricing may change.</p>
+    <a class="brand" href="#top"><span class="logo">D</span>Deskwork</a>
+    <p data-i18n="footer">&copy; 2026 Vezzulab. All rights reserved. Deskwork is in development; features and pricing may change.</p>
   </footer>
 </div>
 
@@ -159,47 +325,58 @@
 (function () {
   var T = {
     es: {
-      title: "Deskwork: una suite de oficina rápida y hermosa",
-      desc: "Deskwork es una suite de oficina en desarrollo para Windows y Linux: Write, Grid, Deck y Notes en una interfaz de cristal rápida y hermosa, con sincronización con NAS y nube.",
-      nav_apps: "Apps", nav_why: "Por qué Deskwork", nav_look: "Diseño", nav_pricing: "Precios",
-      pill: "En desarrollo. Próximamente.",
-      h1: "La suite de oficina que se siente <span>rápida, serena y hermosa.</span>",
-      lead: "Write, Grid, Deck y Notes en una sola interfaz de cristal. Sin cinta de opciones, sin lastre, y tus archivos siguen siendo formatos estándar de Office. Para Windows y Linux.",
-      cta1: "Ver las apps", cta2: "Ver la interfaz",
+      title: "Deskwork: la suite de oficina, reinventada",
+      desc: "Deskwork es una suite de oficina rápida y hermosa para Windows, Linux y macOS: Write, Grid, Deck y Notes en una interfaz refinada. Formatos estándar abiertos, documentos que conservan su estructura y sin telemetría.",
+      nav_suite: "La suite", nav_craft: "Detalle", nav_look: "Interfaz", nav_pricing: "Precios",
+      pill: "Versión 0.2 &middot; Write y Grid ya funcionan",
+      h1: "La suite de oficina, <em class=\"gold\">reinventada.</em>",
+      lead: "Write, Grid, Deck y Notes en una interfaz refinada. Formatos estándar abiertos, documentos que conservan su estructura vengan de donde vengan, y ni un solo byte de telemetría.",
+      cta1: "Explorar la suite", cta2: "Ver la interfaz",
       alt_home: "Pantalla de inicio de Deskwork con Write, Grid, Deck y Notes",
-      apps_h: "Cuatro apps. Una suite coherente.",
-      apps_sub: "Cada app es un programa pequeño y rápido que comparte el mismo diseño, los mismos atajos y la misma búsqueda de comandos con Ctrl+K.",
-      alt_apps: "Write, Grid, Deck y Notes",
-      why_h: "Hecha para no estorbar",
-      why_sub: "Se deja fuera lo que vuelve pesadas a las suites grandes. Lo que sí usas se hace mejor.",
-      c1_t: "Deskbar, no una cinta", c1_p: "Una barra delgada que cambia según tu selección y aprende los comandos que más usas. Todo lo demás está a un Ctrl+K.",
-      c2_t: "Ligera y rápida", c2_p: "Procesos pequeños y separados, sin servicios en segundo plano, y un modo Reducir efectos para equipos modestos.",
-      c3_t: "Tu almacenamiento, tus reglas", c3_p: "Sincroniza y respalda en tu NAS o en la nube. Si hay un conflicto se guardan ambas copias, nunca se sobrescribe en silencio.",
-      c4_t: "Formatos abiertos", c4_p: "Los documentos son .docx, .xlsx y .pptx normales: se abren en cualquier parte y nunca te atan.",
-      c5_t: "Herramientas de precisión", c5_p: "Reglas, márgenes, sangrías, tabulaciones, guías y ajuste automático: los detalles que exige el trabajo serio.",
-      c6_t: "Privada por diseño", c6_p: "Sin telemetría y sin subir documentos. La verificación de licencia solo envía lo necesario para confirmar tu compra.",
-      look_h: "Una interfaz serena y por capas",
-      look_sub: "Cristal esmerilado, un color por app, temas claro y oscuro y una distribución estrictamente simétrica.",
-      alt_deck: "Deskwork Deck en modo oscuro", cap_deck: "Deck, tema oscuro",
-      look_note: "Vistas previas del diseño. Las apps están en desarrollo y aún no están disponibles.",
-      pricing_h: "Precios simples",
-      pricing_sub: "Precios planeados para el lanzamiento. Pagas una vez, sin suscripción.",
-      alt_pricing: "Prueba gratis de 7 días, 19,99 dólares una sola vez por 2 equipos, 4,99 dólares por equipo extra hasta 5",
-      pricing_note: "Planeado y sujeto a cambios antes del lanzamiento.",
-      final_h: "Próximamente para Windows y Linux",
-      final_p: "Deskwork se está construyendo ahora mismo. Esta página anunciará el primer lanzamiento.",
+      st1: "archivos reales hacen el ida y vuelta sin pérdidas; el resto está documentado",
+      st2: "para abrir un libro de 500.000 filas",
+      st3: "telemetría, subidas de documentos o anuncios",
+      st4: "una sola vez, para dos equipos. Sin suscripción",
+      suite_e: "La suite", suite_h: "Cuatro apps. Un conjunto <em>coherente</em> y cuidado.",
+      suite_sub: "Una ventana, un lenguaje de diseño, una búsqueda de comandos con Ctrl+K. Cambia de app desde el riel sin perder tu lugar.",
+      live: "Ya funciona", live2: "Ya funciona", soon: "En diseño", soon2: "En diseño",
+      write_p: "Documentos con cinta de pestañas, reglas interactivas, estilos, listas, imágenes y tablas que se redimensionan arrastrando. Abre y guarda .docx y conserva todo lo que no edita.",
+      grid_p: "Hojas de cálculo con unas 110 funciones, formatos de número, gráficos y deshacer. Abre y guarda .xlsx y carga libros enormes en segundos.",
+      deck_p: "Presentaciones que lucen compuestas desde el inicio, con animaciones que sobreviven al ida y vuelta por .pptx.",
+      notes_p: "Cuadernos, listas y bocetos en Markdown simple más recursos, para que tus notas sean siempre tuyas.",
+      craft_e: "Detalle", craft_h: "Hecha para quien <em>cuida cómo se siente.</em>",
+      craft_sub: "Ponemos el esfuerzo donde las suites grandes fallan.",
+      f1_t: "Tus documentos conservan su forma",
+      f1_p: "Abre un archivo creado en otro sistema y vuelve con sus estilos, numeración, encabezados, comentarios, campos, cambios controlados y dibujos intactos, incluso las partes que Deskwork no edita. Probamos con cientos de archivos reales y publicamos lo que aún falla.",
+      f2_t: "Rápida con archivos grandes", f2_p: "Un libro de 500.000 filas, medido.",
+      before: "Antes", now: "Ahora", f2_n: "Guardado. Abrir tarda 3,1 s.",
+      f3_t: "Precisión a mano", f3_p: "Arrastra márgenes y sangrías en la regla. Arrastra los bordes y la esquina de una tabla para darle tamaño, como esperas.",
+      f4_t: "Macros, con cuidado", f4_p: "Los proyectos de macros se conservan intactos, se pueden inspeccionar y solo se ejecutan si lo permites. Vienen desactivadas.",
+      f5_t: "Privada por diseño", f5_p: "Sin telemetría y sin subir documentos. La verificación de licencia solo envía lo necesario para confirmar tu compra.",
+      look_e: "Interfaz", look_h: "Serena, por capas, <em>simétrica.</em>",
+      look_sub: "Cristal esmerilado, un color de acento por app, temas claro y oscuro y una cuadrícula de 8 px que mantiene cada borde alineado.",
+      alt_deck: "Deskwork Deck, vista previa de diseño, tema oscuro", cap_deck: "Deck, vista previa de diseño",
+      alt_notes: "Deskwork Notes, vista previa de diseño", cap_notes: "Notes, vista previa de diseño",
+      look_note: "Las imágenes son vistas previas del diseño y pueden diferir de la versión actual. Deck y Notes aún no están construidas.",
+      pr_e: "Precios", pr_h: "Pagas una vez. <em>Es tuya.</em>",
+      pr_sub: "Precios planeados para el lanzamiento, sin suscripción ni ventas adicionales. Sujetos a cambios antes del lanzamiento.",
+      p1_h: "Prueba", p1_u: "7 días", p1_a: "Todas las funciones, sin límites", p1_b: "Cuenta regresiva clara, nunca una sorpresa", p1_c: "Tus archivos nunca se tocan",
+      p2_h: "Deskwork", p2_u: "una vez", p2_a: "Write, Grid, Deck y Notes", p2_b: "Dos equipos incluidos", p2_c: "30 días de uso sin conexión entre verificaciones",
+      p3_h: "Equipo extra", p3_u: "cada uno", p3_a: "Añade hasta tres equipos más", p3_b: "Cinco equipos en total", p3_c: "Ligado a tu licencia",
+      fin_e: "Dónde estamos", final_h: "En construcción, <em>con esmero.</em>",
+      final_p: "Write y Grid funcionan hoy en versiones de desarrollo para Windows. Siguen Linux y macOS, Deck, Notes y la sincronización con NAS y nube. Esta página anunciará el primer lanzamiento.",
       footer: "&copy; 2026 Vezzulab. Todos los derechos reservados. Deskwork está en desarrollo; las funciones y los precios pueden cambiar."
     }
   };
 
-  var EN = {};  // English text is the HTML default; capture it once so we can switch back.
+  var EN = {};
+  var HTMLKEYS = { h1:1, pill:1, suite_h:1, craft_h:1, look_h:1, pr_h:1, final_h:1, footer:1 };
   function capture() {
-    document.querySelectorAll('[data-i18n]').forEach(function (e) { EN[e.dataset.i18n] = e.textContent; });
+    document.querySelectorAll('[data-i18n]').forEach(function (e) { EN[e.dataset.i18n] = HTMLKEYS[e.dataset.i18n] ? e.innerHTML : e.textContent; });
     document.querySelectorAll('[data-i18n-html]').forEach(function (e) { EN[e.dataset.i18nHtml] = e.innerHTML; });
     document.querySelectorAll('[data-i18n-alt]').forEach(function (e) { EN[e.dataset.i18nAlt] = e.getAttribute('alt'); });
     EN.title = document.title;
     EN.desc = document.querySelector('meta[name="description"]').getAttribute('content');
-    EN.footer = document.querySelector('[data-i18n="footer"]').innerHTML;
   }
 
   function apply(lang) {
@@ -209,13 +386,10 @@
     document.querySelector('meta[name="description"]').setAttribute('content', d.desc);
     document.querySelectorAll('[data-i18n]').forEach(function (e) {
       var k = e.dataset.i18n;
-      if (k === 'footer') e.innerHTML = d.footer; else e.textContent = d[k];
+      if (HTMLKEYS[k]) e.innerHTML = d[k]; else e.textContent = d[k];
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function (e) { e.innerHTML = d[e.dataset.i18nHtml]; });
     document.querySelectorAll('[data-i18n-alt]').forEach(function (e) { e.setAttribute('alt', d[e.dataset.i18nAlt]); });
-    document.querySelectorAll('[data-img]').forEach(function (e) {
-      e.setAttribute('src', 'assets/' + e.dataset.img + (lang === 'es' ? '.es.svg' : '.svg'));
-    });
     document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
     try { localStorage.setItem('dw-lang', lang); } catch (e) {}
   }
@@ -233,6 +407,28 @@
   document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.lang); }); });
   var l = initial();
   if (l !== 'en') apply(l);
+
+  // reveal on scroll, and fill the bars when they come into view
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      en.target.querySelectorAll('.bar i[data-w]').forEach(function (b) { b.style.width = b.dataset.w + '%'; });
+      io.unobserve(en.target);
+    });
+  }, { threshold: .15 }) : null;
+  document.querySelectorAll('.rv').forEach(function (e) {
+    if (io) io.observe(e); else { e.classList.add('in'); e.querySelectorAll('.bar i[data-w]').forEach(function (b) { b.style.width = b.dataset.w + '%'; }); }
+  });
+
+  // soft light that follows the pointer over a tile
+  document.querySelectorAll('.tile').forEach(function (t) {
+    t.addEventListener('pointermove', function (ev) {
+      var r = t.getBoundingClientRect();
+      t.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+      t.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+    });
+  });
 })();
 </script>
 </body>
