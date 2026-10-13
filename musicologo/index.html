@@ -442,8 +442,24 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
     return cache[f]=raw[f].then(function(b){if(!b)throw 0;return new Promise(function(ok,no){ac.decodeAudioData(b.slice(0),ok,no)})});
   }
   /** Plays a sound; if the audio is still asleep it waits for it to wake instead of playing into silence. */
+  /** Safety net for phones: a plain <audio> started right inside the touch always sounds, even while Web Audio is still asleep. */
+  var tags={};
+  function playTag(f,el){
+    try{
+      var a=tags[f]; if(!a||!a.paused){a=new Audio('audio/'+f+'.mp3');a.preload='auto';a.setAttribute('playsinline','');tags[f]=a}
+      a.currentTime=0;a.volume=.95;
+      var p=a.play(); if(p&&p.catch)p.catch(function(){msg.textContent='SUBE EL VOLUMEN DE MULTIMEDIA'});
+      if(el){el.classList.add('h');setTimeout(function(){el.classList.remove('h')},900)}
+      pulse=1;msg.textContent=name(f).toUpperCase();draw();
+    }catch(e){}
+  }
   function play(f,el){
-    init();
+    if(!ac||ac.state!=='running'){
+      playTag(f,el);                       // right now, inside the touch
+      init(); var rp=ac.resume&&ac.resume(); if(rp&&rp.catch)rp.catch(function(){});
+      SND.forEach(function(x){load(x[0])});
+      return;
+    }
     if(el)el.classList.add('h');
     var wake=(ac.state==='running')?Promise.resolve():(function(){var p=ac.resume();return (p&&p.then)?p.catch(function(){}):Promise.resolve()})();
     Promise.all([load(f),wake]).then(function(r){
