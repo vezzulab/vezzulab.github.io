@@ -416,6 +416,7 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
   function name(f){for(var i=0;i<SND.length;i++)if(SND[i][0]===f)return SND[i][1];return f}
   var raw={};           // downloaded but not decoded yet (decoding needs the audio context, which needs a finger lifted)
   var unlocked=false, silent=null;
+  try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}   // iPhone: sound even with the silent switch on
   function init(){
     if(ac)return;
     ac=new (window.AudioContext||window.webkitAudioContext)();
@@ -476,9 +477,10 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
     order.forEach(function(f){
       var b=document.createElement('button');b.className='pad';b.innerHTML='<span></span>';b.firstChild.textContent=name(f);
       var downAt=0;
-      b.addEventListener('pointerdown',function(e){downAt=e.timeStamp;if(ac&&ac.state==='running'){e.preventDefault();played=true;play(f,b)}else played=false});
+      b.addEventListener('pointerdown',function(e){downAt=e.timeStamp;played=false;if(ac&&ac.state==='running'){played=true;play(f,b)}});
       var played=false;
-      b.addEventListener('pointerup',function(e){if(!played){played=true;play(f,b)}});
+      // iPhone only counts touchend/click as a real tap for sound (pointerup does not), so the first tap plays from the click
+      b.addEventListener('click',function(e){if(!played)play(f,b);played=false});
       b.addEventListener('contextmenu',function(e){e.preventDefault()});
       padsEl.appendChild(b);
     });
