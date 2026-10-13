@@ -451,6 +451,24 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
     SND.forEach(function(x){load(x[0])});
   }
   ['touchend','pointerup','click','keydown'].forEach(function(t){addEventListener(t,unlock,{capture:true,passive:true})});
+  /* ---- the voice of the brand: "Musicologo · El Combate" once, on load if the browser allows it, otherwise on the first tap ---- */
+  (function(){
+    var intro=new Audio('combate.mp3'),done=false;intro.preload='auto';intro.volume=.9;intro.setAttribute('playsinline','');
+    function go(){
+      if(done)return;
+      var p=intro.play();
+      if(p&&p.then)p.then(function(){done=true;off()},function(){});else done=true;
+    }
+    function tap(e){
+      if(e.type==='keydown'&&e.key==='Tab')return;
+      if(e.target&&e.target.closest&&e.target.closest('#pads,#gal'))return;   // a sampler tap must sound alone
+      go();
+    }
+    function off(){['touchend','click','keydown'].forEach(function(t){removeEventListener(t,tap,true)})}
+    ['touchend','click','keydown'].forEach(function(t){addEventListener(t,tap,{capture:true,passive:true})});
+    go();
+    document.addEventListener('visibilitychange',function(){if(document.hidden)intro.pause()});
+  })();
   document.addEventListener('visibilitychange',function(){if(!document.hidden&&ac&&ac.state!=='running'){var p=ac.resume();if(p&&p.catch)p.catch(function(){})}});
   // the files are downloaded right away, so the first tap has no wait
   SND.forEach(function(x){raw[x[0]]=fetch('audio/'+x[0]+'.mp3').then(function(r){return r.arrayBuffer()}).catch(function(){return null})});
