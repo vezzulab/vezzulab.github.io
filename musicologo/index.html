@@ -453,11 +453,13 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
   ['touchend','pointerup','click','keydown'].forEach(function(t){addEventListener(t,unlock,{capture:true,passive:true})});
   /* ---- the voice of the brand: "Musicologo · El Combate" once, on load if the browser allows it, otherwise on the first tap ---- */
   (function(){
+    var heard=false;try{heard=localStorage.getItem('mc_intro')==='1'}catch(e){}
+    if(heard)return;                                  // only the first visit
     var intro=new Audio('combate.mp3'),done=false;intro.preload='auto';intro.volume=.9;intro.setAttribute('playsinline','');
     function go(){
       if(done)return;
       var p=intro.play();
-      if(p&&p.then)p.then(function(){done=true;off()},function(){});else done=true;
+      if(p&&p.then)p.then(function(){done=true;off();try{localStorage.setItem('mc_intro','1')}catch(e){}},function(){});else done=true;
     }
     function tap(e){
       if(e.type==='keydown'&&e.key==='Tab')return;
