@@ -35,70 +35,14 @@ button{font:inherit;color:inherit}
 .d{font-family:Anton,Impact,"Arial Narrow",sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.01em;line-height:.92}
 .red{color:var(--red)}.gold{color:var(--gold)}
 .wrap{max-width:1240px;margin:0 auto;padding:0 26px}
-
-
-/* ---------- top bar ---------- */
-.top{position:fixed;inset:0 0 auto 0;z-index:70;display:flex;justify-content:space-between;align-items:center;padding:16px 26px;transition:background .3s}
-.top.s{background:linear-gradient(rgba(10,7,9,.92),rgba(10,7,9,0))}
-.top a.l{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:22px}
-.top a.l img{width:34px;height:34px;border-radius:8px}
-.top .r{display:flex;gap:10px;align-items:center}
 .pill{font-family:Anton,Impact,sans-serif;text-transform:uppercase;text-decoration:none;font-size:15px;letter-spacing:.12em;padding:10px 22px;background:var(--red);color:#fff;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:.2s;border:0;cursor:pointer}
 .pill:hover{background:#fff;color:#000}
 .pill.g{background:rgba(255,255,255,.14);color:#fff}
-
-/* ---------- hero: scroll-driven ---------- */
-.hero{position:relative;height:270vh;background:#0a0709}
-.heroin{position:sticky;top:0;height:100vh;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#2a0a0e 0%,#0a0709 62%)}
-.spot{position:absolute;inset:0;background:radial-gradient(420px 420px at var(--mx,50%) var(--my,40%),rgba(255,170,110,.18),transparent 70%);pointer-events:none;z-index:1}
-.beam{position:absolute;top:-10%;width:46vw;height:130%;background:linear-gradient(180deg,rgba(255,200,150,.34),rgba(255,42,54,.10) 55%,transparent);transform-origin:50% 0;pointer-events:none;clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);will-change:transform}
-.beam.l{left:-6vw;transform:rotate(-14deg);animation:sw 9s ease-in-out infinite alternate}
-.beam.r{right:-6vw;transform:rotate(14deg);animation:sw2 11s ease-in-out infinite alternate-reverse}
-@keyframes sw{to{transform:rotate(-4deg)}}@keyframes sw2{to{transform:rotate(4deg)}}
-.vinyl{position:absolute;left:50%;top:50%;width:min(calc(var(--vh)*112),118vw);aspect-ratio:1;translate:-50% -46%;border-radius:50%;will-change:transform,scale,opacity;
- background:radial-gradient(circle,#c9302c 0 11%,#1a0b0d 11.5% 12.5%,transparent 13%),repeating-radial-gradient(circle,#0c0a0c 0 2px,#151013 3px 4px),conic-gradient(from 20deg,#0c0a0c,#2a2328 8%,#0c0a0c 16%,#0c0a0c 50%,#2a2328 58%,#0c0a0c 66%);
- box-shadow:0 0 0 2px #261a1d,0 0 120px rgba(255,42,54,.3);animation:spin 28s linear infinite;opacity:.9}
-.vglow{position:absolute;left:50%;top:50%;width:min(calc(var(--vh)*112),118vw);aspect-ratio:1;translate:-50% -46%;border-radius:50%;box-shadow:0 0 200px 40px rgba(255,42,54,.75);opacity:0;pointer-events:none;will-change:opacity}
-.vinyl:after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 10%,rgba(255,255,255,.10) 14%,transparent 20% 60%,rgba(255,255,255,.07) 64%,transparent 70%);animation:spin 28s linear infinite reverse}
-@keyframes spin{to{rotate:360deg}}
-.vinyl img{position:absolute;left:50%;top:50%;width:21%;translate:-50% -50%;border-radius:50%}
-.slash{position:absolute;top:0;bottom:0;background:linear-gradient(var(--red),var(--deep));transform:skewX(-14deg);opacity:.85;z-index:2}
-.slash.a{left:2vw;width:3vw}.slash.b{left:7vw;width:1.2vw;opacity:.5}.slash.c{right:2vw;width:3vw}.slash.d{right:7vw;width:1.2vw;opacity:.5}
-.word{position:absolute;left:0;right:0;top:calc(var(--vh)*11);text-align:center;font-size:18.4vw;color:#fff;z-index:3;white-space:nowrap;will-change:transform,opacity;
- text-shadow:0 .02em 0 var(--deep),0 .05em .3em rgba(0,0,0,.7)}
-.word span{display:inline-block;transform:skewX(-8deg);animation:slam .8s cubic-bezier(.2,1.4,.3,1) both;animation-delay:calc(var(--i)*70ms + .2s)}
-@keyframes slam{from{opacity:0;transform:translateY(-70%) skewX(-8deg) scaleY(1.5)}60%{opacity:1}to{opacity:1;transform:skewX(-8deg)}}
-.plate{position:absolute;left:50%;top:calc(var(--vh)*11 + 17.2vw);z-index:4;translate:-50% 0;rotate:-3deg;background:var(--red);padding:.4em 1.4em;font-size:clamp(20px,4.2vw,58px);letter-spacing:.34em;text-indent:.34em;color:#fff;white-space:nowrap;box-shadow:0 14px 50px rgba(255,42,54,.6);clip-path:polygon(2.5% 0,100% 0,97.5% 100%,0 100%);will-change:opacity;
- animation:pop .6s cubic-bezier(.2,1.5,.3,1) 1.1s both}
-@keyframes pop{from{scale:0;opacity:0}to{scale:1}}
-.tag{position:absolute;z-index:6;font-size:clamp(14px,1.6vw,22px);letter-spacing:.18em;padding:.45em 1em;will-change:opacity}
-.tag.l{left:4vw;top:calc(var(--vh)*58);rotate:-6deg;background:#0a0709;border:2px solid var(--gold);color:var(--gold)}
-.tag.r{right:4vw;top:calc(var(--vh)*64);rotate:5deg;background:var(--red);color:#fff}
-.stageimg{position:absolute;left:50%;bottom:-7%;width:min(880px,72vw);translate:-50% 0;z-index:5;transform-origin:50% 100%;will-change:transform;
- transform:perspective(1400px) rotateX(14deg)}
-.sglow{position:absolute;inset:-3% -4%;border-radius:30px;box-shadow:0 -10px 120px 30px rgba(255,42,54,.7);opacity:0;pointer-events:none;will-change:opacity}
-.stageimg .fr{position:relative;border-radius:22px;padding:9px;background:linear-gradient(150deg,#2a2630,#0d0b10);border:1px solid rgba(255,255,255,.2);box-shadow:0 -30px 100px rgba(255,42,54,.4),0 40px 120px rgba(0,0,0,.8)}
-.stageimg img{border-radius:14px;width:100%}
-.cue{position:absolute;left:auto;right:3.5vw;bottom:calc(var(--vh)*5);z-index:7;will-change:opacity;writing-mode:vertical-rl;font-size:12px;letter-spacing:.36em;color:#cdbdb2;text-align:center;}
-.cue i{display:block;width:2px;height:34px;margin:10px auto 0;background:linear-gradient(var(--gold),transparent);animation:cu 1.6s ease-in-out infinite}
-@keyframes cu{50%{transform:scaleY(.4)}}
-.mh{display:none}
-.mchips{display:none}
-.hcta{position:absolute;left:0;right:0;top:calc(var(--vh)*10);z-index:7;text-align:center;opacity:0;will-change:opacity;pointer-events:none;will-change:opacity}
-.hcta h2{font-size:clamp(34px,6vw,84px);text-shadow:0 8px 40px #000}
-
-/* ---------- tape ---------- */
 .tapew{overflow:hidden;position:relative;z-index:8;padding:16px 0;margin-top:-2vh}
 .tape{position:relative;z-index:8;rotate:-1.6deg;background:var(--gold);color:#0a0709;overflow:hidden;padding:12px 0;box-shadow:0 10px 40px rgba(0,0,0,.6);margin:0 -6vw}
 .tape div{display:flex;gap:34px;width:max-content;font-size:clamp(20px,2.6vw,34px);animation:tp 30s linear infinite;letter-spacing:.06em}
 .tape b{color:var(--red)}
 @keyframes tp{to{transform:translateX(-50%)}}
-
-.intro{padding:140px 0 40px;text-align:center}
-.intro p.k{font-size:13px;letter-spacing:.4em;font-weight:800;color:var(--gold)}
-.intro h2{font-size:clamp(46px,9vw,128px);margin:18px 0 22px}
-.intro p.s{max-width:640px;margin:0 auto;font-size:clamp(17px,1.8vw,21px);color:#cdbdb2}
-
 /* ---------- the toy rig ---------- */
 .toy{padding:120px 0 40px}
 .toy .hd{text-align:center;margin-bottom:46px}
@@ -145,138 +89,225 @@ input[type=range]::-moz-range-thumb{width:52px;height:40px;border-radius:6px;bac
 .gi button.pl{width:42px;padding:0}
 .gi button.q{background:#8e1a20}.gi button.p{background:#22d3ee;color:#000}
 .rig .note{margin-top:18px;font-size:12.5px;color:#8f8278;text-align:center}
-
-/* ---------- rounds ---------- */
-.round{position:relative;padding:110px 0;overflow:hidden}
-.round .num{position:absolute;font-size:34vw;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.1);top:50%;translate:0 -50%;pointer-events:none;user-select:none}
-.round.a .num{right:-2vw}.round.b .num{left:-2vw}
-.row{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
-.round.b .row{grid-template-columns:1.1fr 1fr}.round.b .copy{order:2}
-.copy h3{font-size:clamp(44px,6.4vw,96px);margin-bottom:22px}
-.copy p{font-size:clamp(17px,1.7vw,20px);color:#d6c7bd;max-width:500px}
-.copy ul{list-style:none;padding:0;margin-top:22px}
-.copy li{display:flex;gap:14px;padding:12px 0;border-top:1px solid rgba(255,255,255,.14);font-size:17px;color:#e6d9cf}
-.copy li:before{content:"";flex:none;width:10px;height:10px;margin-top:9px;background:var(--red);transform:skewX(-14deg)}
-.shot .fr{background:#0d0b10;border:1px solid rgba(255,255,255,.18);padding:8px;border-radius:18px;box-shadow:24px 24px 0 var(--red),0 40px 100px rgba(0,0,0,.6);transform:translateY(var(--py,0))}
-.round.b .shot .fr{box-shadow:-24px 24px 0 var(--gold),0 40px 100px rgba(0,0,0,.6)}
-.shot img{border-radius:11px;width:100%}
-.shot.p{display:flex;justify-content:center}
-.shot.p .fr{width:min(330px,80%);padding:9px;border-radius:38px;rotate:3deg;box-shadow:-20px 20px 0 var(--gold),0 40px 100px rgba(0,0,0,.6)}
-.shot.p img{border-radius:30px}
-
-/* ---------- lights ---------- */
-.midi .copy p.mn{margin-top:20px;font-size:15px;color:#a99a91}
-.midiart{justify-self:center;width:min(380px,80%);filter:drop-shadow(0 30px 60px rgba(255,42,54,.35))}
-.lights{position:relative;overflow:hidden;padding:130px 0;background:#000;text-align:center}
-.rays{position:absolute;inset:0;opacity:.6;will-change:opacity}
-.rays i{position:absolute;top:-10%;left:50%;width:30vw;height:130%;transform-origin:50% 0;will-change:transform;clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);animation:ray 7s ease-in-out infinite alternate}
-.rays i:nth-child(1){background:linear-gradient(rgba(255,42,54,.65),transparent 85%);--a:-38deg;--b:-12deg}
-.rays i:nth-child(2){background:linear-gradient(rgba(255,179,71,.55),transparent 85%);--a:-14deg;--b:10deg;animation-duration:9s}
-.rays i:nth-child(3){background:linear-gradient(rgba(124,58,237,.6),transparent 85%);--a:12deg;--b:36deg;animation-duration:8s}
-.rays i:nth-child(4){background:linear-gradient(rgba(34,211,238,.45),transparent 85%);--a:-4deg;--b:-30deg;animation-duration:11s}
-@keyframes ray{from{rotate:var(--a)}to{rotate:var(--b)}}
-.lights .in{position:relative;z-index:2}
-.lights h3{font-size:clamp(54px,11vw,170px);text-shadow:0 0 60px rgba(0,0,0,.9)}
-.lights p{max-width:560px;margin:20px auto 0;color:#e2d4ca;font-size:19px;text-shadow:0 2px 20px #000}
-.brands{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
-.brands span{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.1em;padding:.4em 1.2em;border:2px solid #fff;background:rgba(0,0,0,.55)}
-
-/* ---------- tale of the tape ---------- */
-.tape2{background:var(--paper);color:#140d0d;padding:110px 0;position:relative}
-.tape2:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 2px,transparent 2px 4px);pointer-events:none}
-.tape2 .hd{text-align:center;margin-bottom:50px;position:relative}
-.tape2 .hd p{font-size:13px;letter-spacing:.4em;font-weight:800;color:var(--deep)}
-.tape2 .hd h2{font-size:clamp(46px,8vw,120px);margin-top:14px}
-.tbl{position:relative;max-width:900px;margin:0 auto;border-top:6px solid #140d0d}
-.tbl div{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:20px;padding:20px 4px;border-bottom:2px solid #140d0d}
-.tbl span{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:15px}
-.tbl b{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(34px,5vw,60px);color:var(--red);line-height:1;text-align:right}
-.tbl small{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:none;color:#5b4a46}
-
-/* ---------- final bell ---------- */
-.bell{position:relative;padding:150px 0 90px;text-align:center;overflow:hidden;background:radial-gradient(80% 60% at 50% 100%,#4a0d14,#0a0709)}
-.bell h2{font-size:clamp(54px,12vw,190px)}
-.bell p{max-width:540px;margin:22px auto 36px;font-size:19px;color:#dccdc3}
 .big{display:inline-block;font-family:Anton,Impact,sans-serif;text-transform:uppercase;text-decoration:none;font-size:clamp(22px,3vw,34px);letter-spacing:.14em;padding:.7em 2em;background:var(--red);color:#fff;clip-path:polygon(18px 0,100% 0,calc(100% - 18px) 100%,0 100%);transition:.2s}
 .big:hover{background:#fff;color:#000;transform:scale(1.04)}
 .big.soon{cursor:default}.big.soon:hover{background:var(--red);color:#fff;transform:none}
 footer{padding:36px 26px 46px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);color:#a99a91;font-size:14px;background:#0a0709}
 footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18em;color:#fff}
-
 .paused *,.paused{animation-play-state:paused!important}
 .rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s}.rv.on{opacity:1;transform:none}
 
+/* ============ NEW DESIGN ============ */
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{overflow-x:hidden}
+.top{position:fixed;inset:0 0 auto 0;z-index:70;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;transition:background .3s,backdrop-filter .3s}
+.top.s{background:rgba(10,7,9,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top a.l{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:22px}
+.top a.l img{width:34px;height:34px;border-radius:8px}
+.top nav{display:flex;gap:26px;align-items:center}
+.top nav a.t{font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-decoration:none;color:#e6d9cf;opacity:.8}
+.top nav a.t:hover{opacity:1;color:var(--gold)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 22px 170px;overflow:hidden;background:#0a0709;isolation:isolate}
+.hero .bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;filter:saturate(1.25) brightness(1.1)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(90% 70% at 50% 40%,rgba(10,7,9,.25),rgba(10,7,9,.82) 78%),linear-gradient(180deg,rgba(10,7,9,.55),rgba(10,7,9,.05) 35%,rgba(10,7,9,.95))}
+.hero .vglow{position:absolute;left:50%;top:50%;width:80vmax;height:80vmax;translate:-50% -50%;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,42,54,.5),transparent 60%);opacity:0;pointer-events:none}
+.hero .slash{position:absolute;top:0;bottom:0;background:linear-gradient(var(--red),var(--deep));transform:skewX(-14deg);opacity:.8;z-index:-1}
+.hero .slash.a{left:2vw;width:2.4vw}.hero .slash.b{left:6vw;width:.8vw;opacity:.45}.hero .slash.c{right:2vw;width:2.4vw}.hero .slash.d{right:6vw;width:.8vw;opacity:.45}
+.kick{display:inline-block;font-size:clamp(11px,1.4vw,15px);letter-spacing:.34em;font-weight:800;color:var(--gold);padding:.55em 1.2em;border:1px solid rgba(255,179,71,.5);background:rgba(10,7,9,.5);margin-bottom:22px;text-transform:uppercase}
+.word{font-size:clamp(50px,15.2vw,236px);color:#fff;white-space:nowrap;text-shadow:0 .02em 0 var(--deep),0 .05em .3em rgba(0,0,0,.7)}
+.word span{display:inline-block;transform:skewX(-8deg);animation:slam .8s cubic-bezier(.2,1.4,.3,1) both;animation-delay:calc(var(--i)*70ms + .15s)}
+@keyframes slam{from{opacity:0;transform:translateY(-70%) skewX(-8deg) scaleY(1.5)}60%{opacity:1}to{opacity:1;transform:skewX(-8deg)}}
+.plate{display:inline-block;margin-top:.2em;rotate:-3deg;background:var(--red);padding:.4em 1.4em;font-size:clamp(18px,3.6vw,50px);letter-spacing:.34em;text-indent:.34em;color:#fff;box-shadow:0 14px 50px rgba(255,42,54,.6);clip-path:polygon(2.5% 0,100% 0,97.5% 100%,0 100%);animation:pop .6s cubic-bezier(.2,1.5,.3,1) 1.05s both}
+@keyframes pop{from{scale:0;opacity:0}to{scale:1}}
+.sub{max-width:620px;margin:26px auto 0;font-size:clamp(16px,1.9vw,21px);color:#eadfd6;text-shadow:0 2px 20px #000}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:30px}
+.big.go2{background:linear-gradient(135deg,#b5121b,#ff2a36 60%,#ff6b3a)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:.7em 1.5em;border:2px solid rgba(255,255,255,.7);background:rgba(10,7,9,.55);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(12px,1.3vw,15px);border-radius:999px}
+.badge i{width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px var(--gold);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.stage{position:relative;z-index:5;width:min(960px,90vw);margin:-150px auto 0;transform:perspective(1500px) rotateX(10deg);transform-origin:50% 100%}
+.stage .fr{position:relative;border-radius:22px;padding:9px;background:linear-gradient(150deg,#2a2630,#0d0b10);border:1px solid rgba(255,255,255,.2);box-shadow:0 -20px 100px rgba(255,42,54,.45),0 40px 120px rgba(0,0,0,.85)}
+.stage img{border-radius:14px;width:100%}
+.stage .sglow{position:absolute;inset:-3% -4%;border-radius:30px;box-shadow:0 0 120px 30px rgba(255,42,54,.7);opacity:0;pointer-events:none}
+
+/* ticker */
+.tapew{overflow:hidden;position:relative;z-index:8;padding:16px 0 10px;margin-top:90px}
+
+/* statements */
+.say{padding:120px 0 30px;text-align:center}
+.say .k{font-size:13px;letter-spacing:.4em;font-weight:800;color:var(--gold)}
+.say h2{font-size:clamp(44px,8.4vw,120px);margin:16px 0 20px}
+.say p.s{max-width:660px;margin:0 auto;font-size:clamp(17px,1.8vw,21px);color:#cdbdb2}
+
+/* feature rows with photos */
+.fx{position:relative;padding:90px 0}
+.fx .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+.fx.rev .grid{grid-template-columns:1fr 1.15fr}.fx.rev .ph{order:2}
+.ph{position:relative}
+.ph .pic{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 100px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.14)}
+.ph .pic img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;transform:translateY(var(--py,0))}
+.ph .pic:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,7,9,.55))}
+.ph .ins{position:absolute;right:-5%;bottom:-9%;width:44%;border-radius:16px;padding:6px;background:linear-gradient(150deg,#2a2630,#0d0b10);border:1px solid rgba(255,255,255,.22);box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 60px rgba(255,42,54,.35)}
+.ph .ins img{border-radius:11px;width:100%;max-height:340px;object-fit:cover;object-position:top}
+.fx.rev .ph .ins{right:auto;left:-5%}
+.ph .ins.phone{width:30%;border-radius:30px}
+.ph .ins.phone img{border-radius:24px;max-height:430px}
+.fx .tx .lab{margin-bottom:18px}
+.fx .tx h3{font-size:clamp(42px,6vw,88px);margin-bottom:20px}
+.fx .tx p{font-size:clamp(17px,1.6vw,20px);color:#d6c7bd;max-width:520px}
+.fx .tx ul{list-style:none;padding:0;margin-top:20px}
+.fx .tx li{display:flex;gap:14px;padding:11px 0;border-top:1px solid rgba(255,255,255,.14);font-size:17px;color:#e6d9cf}
+.fx .tx li:before{content:"";flex:none;width:10px;height:10px;margin-top:9px;background:var(--red);transform:skewX(-14deg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.steps div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 14px}
+.steps b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:34px;color:var(--gold);line-height:1}
+.steps span{display:block;margin-top:8px;font-size:14px;color:#e6d9cf;line-height:1.35}
+.mn{margin-top:18px;font-size:14px;color:#a99a91}
+.sub2{margin:26px 0 8px;font-size:26px;color:var(--gold)}
+
+/* sampler section */
+.toy{position:relative;padding:130px 0 70px;overflow:hidden}
+.toy .bgph{position:absolute;inset:0;z-index:-1}
+.toy .bgph img{width:100%;height:100%;object-fit:cover;opacity:.32}
+.toy .bgph:after{content:"";position:absolute;inset:0;background:linear-gradient(#0a0709,rgba(10,7,9,.55) 30%,rgba(10,7,9,.7) 70%,#0a0709)}
+.toy .sglow{position:absolute;inset:0;border-radius:26px;box-shadow:0 0 130px 20px rgba(255,42,54,.65);opacity:0;pointer-events:none}
+
+/* lights */
+.lights{position:relative;overflow:hidden;padding:150px 0;background:#000;text-align:center;isolation:isolate}
+.lights .bg{position:absolute;inset:0;z-index:-2}
+.lights .bg img{width:100%;height:100%;object-fit:cover;opacity:.75}
+.lights:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#0a0709,rgba(10,7,9,.2) 30%,rgba(10,7,9,.35) 70%,#0a0709)}
+.lights .in{position:relative;z-index:2}
+.lights h3{font-size:clamp(54px,11vw,170px);text-shadow:0 0 60px rgba(0,0,0,.9)}
+.lights p{max-width:560px;margin:20px auto 0;color:#f0e3d9;font-size:19px;text-shadow:0 2px 20px #000}
+.brands{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.brands span{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.1em;padding:.4em 1.2em;border:2px solid #fff;background:rgba(0,0,0,.55)}
+
+/* free vs pro */
+.plans{padding:120px 0 90px}
+.plans .hd{text-align:center;margin-bottom:46px}
+.plans .hd h2{font-size:clamp(44px,8vw,112px);margin:14px 0 12px}
+.plans .hd p{max-width:560px;margin:0 auto;color:#cdbdb2;font-size:18px}
+.pcs{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;max-width:1000px;margin:0 auto;align-items:stretch}
+.pc{border-radius:24px;padding:30px 28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
+.pc h3{font-size:44px;margin-bottom:6px}
+.pc .sb{font-size:14px;color:#a99a91;margin-bottom:18px}
+.pc ul{list-style:none;padding:0}
+.pc li{padding:9px 0 9px 30px;position:relative;border-top:1px solid rgba(255,255,255,.1);font-size:16px;color:#e6d9cf}
+.pc li:before{content:"✓";position:absolute;left:4px;color:var(--gold);font-weight:800}
+.pc li.no{color:#85766d}.pc li.no:before{content:"–";color:#85766d}
+.pc.pro{position:relative;background:linear-gradient(160deg,#3a0f15,#17090c 60%);border:2px solid var(--gold);box-shadow:0 0 90px rgba(255,42,54,.3)}
+.pc.pro .rib{position:absolute;top:-16px;right:24px;background:var(--red);color:#fff;font-weight:800;letter-spacing:.14em;font-size:12px;padding:.5em 1.1em;border-radius:8px}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 4px}
+.price div{border-radius:16px;padding:14px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.price div.best{background:linear-gradient(135deg,#ffd27a,#ffb347 55%,#ff8a3d);color:#140d0d;border:0}
+.price b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:40px;line-height:1}
+.price span{display:block;font-size:13px;font-weight:700;margin-top:4px}
+.price small{display:block;font-size:11.5px;opacity:.75;margin-top:2px}
+.fine{margin-top:12px;font-size:12px;color:#a99a91;text-align:center}
+
+/* numbers strip */
+.nums{background:var(--paper);color:#140d0d;padding:70px 0}
+.nums .row5{display:flex;flex-wrap:wrap;justify-content:center;gap:26px 0;text-align:center}
+.nums .row5>div{flex:0 0 20%}
+.nums b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(46px,6.4vw,92px);color:var(--red);line-height:1}
+.nums span{display:block;margin-top:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+
+/* final */
+.bell{position:relative;padding:150px 0 90px;text-align:center;overflow:hidden;background:radial-gradient(80% 60% at 50% 100%,#4a0d14,#0a0709)}
+.bell h2{font-size:clamp(54px,12vw,190px)}
+.bell p{max-width:540px;margin:22px auto 36px;font-size:19px;color:#dccdc3}
+.big.soon{cursor:default}.big.soon:hover{background:var(--red);color:#fff;transform:none}
+
 @media(max-width:900px){
-  .hero{height:190vh}
-  .word{top:calc(var(--vh)*14);font-size:19.4vw}.plate{top:calc(var(--vh)*14 + 18vw);font-size:7vw;padding:.35em 1em}
-  .row,.round.b .row{grid-template-columns:1fr;gap:50px}.round.b .copy{order:0}
-  .tag{display:none}.beam{width:70vw}
-  .stageimg{bottom:4%;width:97vw}
-  .mh{display:block;position:absolute;left:0;right:0;top:calc(var(--vh)*14 + 34vw);z-index:6;text-align:center;padding:0 28px;will-change:opacity}
-  .mh p{font-size:16px;color:#d9cbc5;margin-bottom:16px}
-  .round .num{display:none}
-  .vinyl img{display:none}
-  .vinyl{background:repeating-radial-gradient(circle,#0c0a0c 0 2px,#151013 3px 4px),conic-gradient(from 20deg,#0c0a0c,#2a2328 8%,#0c0a0c 16%,#0c0a0c 50%,#2a2328 58%,#0c0a0c 66%)}
-  .mchips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
-  .mchips span{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:15px;letter-spacing:.08em;padding:12px 6px;text-align:center;border:1px solid rgba(255,255,255,.18);background:rgba(10,7,9,.62);color:#fff}
-  .mchips span:nth-child(odd){border-color:rgba(255,179,71,.6);color:var(--gold)}
-  .shot .fr,.round.b .shot .fr{box-shadow:10px 10px 0 var(--red),0 20px 50px rgba(0,0,0,.6)}
-  .round.b .shot .fr{box-shadow:-10px 10px 0 var(--gold),0 20px 50px rgba(0,0,0,.6)}
-  .shot.p .fr{box-shadow:-10px 10px 0 var(--gold),0 20px 50px rgba(0,0,0,.6)}
-  .lights{padding:90px 0}
-  .rays i:nth-child(3),.rays i:nth-child(4){display:none}
-  .round{padding:80px 0}
-  .ctl{grid-template-columns:1fr}.pads{grid-template-columns:repeat(4,1fr);gap:8px}.pad{height:62px;font-size:12px}#gallist{grid-template-columns:1fr}.rig{padding:14px}
-  .top .pill.g{display:none}
+  .top nav a.t{display:none}
+  .top{padding:12px 16px}
+  .hero{padding:96px 18px 120px;min-height:92svh}
+  .hero .slash.b,.hero .slash.d{display:none}
+  .stage{margin-top:-110px;width:96vw;transform:perspective(1100px) rotateX(8deg)}
+  .tapew{margin-top:50px}
+  .ph .ins img{max-height:240px}.ph .ins.phone img{max-height:300px}
+  .fx{padding:64px 0}
+  .fx .grid,.fx.rev .grid{grid-template-columns:1fr;gap:46px}.fx.rev .ph{order:0}
+  .ph .ins{right:-2%;bottom:-8%;width:46%}.fx.rev .ph .ins{left:-2%}.ph .ins.phone{width:34%}
+  .pcs{grid-template-columns:1fr}
+  .nums .row5>div{flex:0 0 33.33%}
+  .word{font-size:17.6vw}
+  .lights{padding:100px 0}
+  .say{padding:80px 0 10px}
+  .toy{padding:90px 0 50px}
+  .pads{grid-template-columns:repeat(4,1fr);gap:8px}.pad{height:62px;font-size:12px}#gallist{grid-template-columns:1fr}.rig{padding:14px}
+  .steps{grid-template-columns:1fr}
+  .toy .hd h2,.say h2,.plans .hd h2{font-size:44px}
 }
-@media(max-width:900px) and (max-height:780px){.mchips{display:none}}
-@media(max-width:560px){.rig .cnt{top:10px;right:14px}.rig .msg{top:auto;bottom:10px;left:14px}.rig canvas{height:150px}.intro h2{font-size:40px}.copy h3{font-size:46px}.lights h3{font-size:56px}.toy .hd h2{font-size:44px}.bell h2{font-size:54px}.tape2 .hd h2{font-size:44px}}
+@media(max-width:560px){.rig .cnt{top:10px;right:14px}.rig .msg{top:auto;bottom:10px;left:14px}.rig canvas{height:150px}.fx .tx h3{font-size:46px}.lights h3{font-size:56px}.bell h2{font-size:54px}.pc{padding:24px 20px}.price b{font-size:34px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.word span,.plate{opacity:1}}
+
 </style>
 </head>
 <body>
 
 <div class="top" id="topbar">
   <a class="l d" href="#top"><img src="icono.png" alt="">Musicologo</a>
-  <div class="r"><a class="pill g" href="#prueba">Pruébala</a><a class="pill" href="#bell">Próximamente</a></div>
+  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controlador</a><a class="t" href="#pedidos">Pedidos</a><a class="t" href="#pro">PRO</a><a class="pill" href="#bell">Próximamente</a></nav>
 </div>
 
 <main id="top">
 <section class="hero" id="hero">
- <div class="heroin" id="heroin">
-  <div class="spot"></div>
-  <div class="beam l"></div><div class="beam r"></div>
+  <video class="bgv" id="bgv" autoplay muted loop playsinline preload="auto" poster="media/hero.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video>
+  <div class="vglow"></div>
   <div class="slash a"></div><div class="slash b"></div><div class="slash c"></div><div class="slash d"></div>
-  <div class="vinyl"><img src="icono.png" alt=""></div><div class="vglow"></div>
-  <div class="word d" aria-label="Musicologo"><span style="--i:0">M</span><span style="--i:1">U</span><span style="--i:2">S</span><span style="--i:3">I</span><span style="--i:4">C</span><span style="--i:5">O</span><span style="--i:6">L</span><span style="--i:7">O</span><span style="--i:8">G</span><span style="--i:9">O</span></div>
+  <span class="kick">La consola de DJ para tu tableta</span>
+  <h1 class="word d" aria-label="Musicologo"><span style="--i:0">M</span><span style="--i:1">U</span><span style="--i:2">S</span><span style="--i:3">I</span><span style="--i:4">C</span><span style="--i:5">O</span><span style="--i:6">L</span><span style="--i:7">O</span><span style="--i:8">G</span><span style="--i:9">O</span></h1>
   <div class="plate d">El Combate</div>
-  <div class="tag d l">Tu fiesta</div>
-  <div class="tag d r">Tu combate</div>
-  <div class="mh"><p>La consola de DJ para tu tableta: mezcla sola, pedidos por QR y luces al ritmo.</p><a class="pill" href="#prueba">Pruébala</a>
-    <div class="mchips"><span>Mezcla sola</span><span>Pedidos por QR</span><span>Sampler ilimitado</span><span>Tu controlador MIDI</span></div></div>
-  <div class="hcta"><h2 class="d">Esto es <span class="red">tu consola.</span></h2></div>
-  <div class="stageimg"><div class="sglow"></div><div class="fr"><img src="consola.jpg" alt="Consola Musicologo con dos platos, mezclador y sampler" fetchpriority="high"></div></div>
-  <div class="cue d">BAJA<i></i></div>
- </div>
+  <p class="sub">Mezcla sola, pedidos por QR, luces al ritmo y tu controlador de DJ. Para bodas, bares, quinceañeras y cualquier fiesta.</p>
+  <div class="cta"><a class="big go2" href="#prueba">Pruébala ahora</a><span class="badge"><i></i>Próximamente en Google Play</span></div>
 </section>
+<div class="stage rv"><div class="sglow"></div><div class="fr"><img src="consola.jpg" alt="Consola Musicologo con dos platos, mezclador y sampler" fetchpriority="high"></div></div>
 
 <div class="tapew"><div class="tape d" aria-hidden="true"><div>
   <span>Mezcla sola</span><b>✦</b><span>Pedidos por QR</span><b>✦</b><span>Cualquier género</span><b>✦</b><span>Dos platos</span><b>✦</b><span>Sampler ilimitado</span><b>✦</b><span>Luces al ritmo</span><b>✦</b><span>Controlador MIDI</span><b>✦</b>
   <span>Mezcla sola</span><b>✦</b><span>Pedidos por QR</span><b>✦</b><span>Cualquier género</span><b>✦</b><span>Dos platos</span><b>✦</b><span>Sampler ilimitado</span><b>✦</b><span>Luces al ritmo</span><b>✦</b><span>Controlador MIDI</span><b>✦</b>
 </div></div></div>
 
-<section class="intro wrap rv">
-  <p class="k">LA CONSOLA DE DJ PARA TU TABLETA</p>
+<section class="say wrap rv">
+  <p class="k">TÚ PONES LA MÚSICA, ELLA PONE EL COMBATE</p>
   <h2 class="d">Sube al ring.<br><span class="red">Suena como un club.</span></h2>
-  <p class="s">Para bodas, bares, quinceañeras y cualquier fiesta. Cualquier género. Tú pones las carpetas y decides cuánto control quieres: que la app mezcle por ti, o tomar los platos tú.</p>
+  <p class="s">Cualquier género, cualquier fiesta. Tú pones las carpetas y decides cuánto control quieres: que la app mezcle por ti, o tomar los platos tú.</p>
+</section>
+
+<section class="fx">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="media/boda.jpg" alt="Invitados bailando en una boda de noche" loading="lazy"></div><div class="ins"><img src="mezclador.jpg" alt="Mezclador de Musicologo" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 1</span>
+      <h3 class="d">Mezcla <span class="red">sola</span></h3>
+      <p>Pones las carpetas y la app se encarga: empareja el ritmo de las canciones y cambia en el compás. Si los tempos no se parecen, hace un fundido limpio, sin cortes bruscos.</p>
+      <ul><li>Los graves de una canción salen mientras entran los de la otra.</li><li>Toca tu música desde la tableta, desde un servidor o desde tu NAS.</li><li>Cuando la lista se acaba, sigue con canciones nuevas.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="fx rev">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="media/manos.jpg" alt="Manos de un DJ sobre la consola en la tableta" loading="lazy"></div><div class="ins"><img src="deck.jpg" alt="Plato de DJ de Musicologo" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 2</span>
+      <h3 class="d">Tú tienes <span class="gold">el control</span></h3>
+      <p>Toca MANUAL y los platos son tuyos. El disco hace scratch. El aro de afuera es la canción entera: toca el minuto que quieres y se queda ahí.</p>
+      <ul><li>CUE, 8 hot cues por plato y loops.</li><li>Ecualizador por canal y de 10 bandas.</li><li>Sets por carpetas: tú escoges cuántas canciones de cada una.</li></ul>
+    </div>
+  </div>
 </section>
 
 <section class="toy" id="prueba">
+ <div class="bgph"><img src="media/luces.jpg" alt="" loading="lazy"></div>
  <div class="wrap">
-  <div class="hd rv"><span class="lab d">Pruébalo ahora</span>
-    <h2 class="d">Sampler <span class="red">ilimitado</span></h2>
-    <p>Guardas todos los sonidos que quieras. La consola muestra 19 botones y, al final, el botón <b>+</b> que abre tu galería para poner o quitar. Pruébalo: toca los botones y abre la galería.</p></div>
+  <div class="hd rv" style="text-align:center;margin-bottom:46px"><span class="lab d">Pruébalo ahora</span>
+    <h2 class="d" style="font-size:clamp(44px,8vw,112px);margin:16px 0 14px">Sampler <span class="red">ilimitado</span></h2>
+    <p style="max-width:600px;margin:0 auto;color:#cdbdb2;font-size:18px">Guardas todos los sonidos que quieras. La consola muestra 19 botones y, al final, el botón <b>+</b> que abre tu galería para poner o quitar. Toca los botones y abre la galería.</p></div>
   <div class="rig rv">
+    <div class="sglow"></div>
     <div class="screen"><canvas id="cv" width="1000" height="200"></canvas><div class="msg" id="msg">TOCA UN BOTÓN</div><div class="cnt"><span id="cntv">19</span> / 19 EN EL SAMPLER</div></div>
     <div class="pads" id="pads"></div>
     <div class="gal" id="gal" hidden>
@@ -289,72 +320,35 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
  </div>
 </section>
 
-<section class="round a">
-  <div class="num d">1</div>
-  <div class="wrap row">
-    <div class="copy rv"><span class="lab d">Round 1</span>
-      <h3 class="d">Mezcla <span class="red">sola</span></h3>
-      <p>Pones las carpetas y la app se encarga: empareja el ritmo de las canciones y cambia en el compás. Si los tempos no se parecen, hace un fundido limpio, sin cortes bruscos.</p>
-      <ul><li>Los graves de una canción salen mientras entran los de la otra.</li><li>Sets por carpetas: tú escoges cuántas canciones de cada una.</li><li>Cuando la lista se acaba, sigue con canciones nuevas.</li></ul>
-    </div>
-    <div class="shot rv"><div class="fr" data-par><img src="mezclador.jpg" alt="Mezclador de Musicologo" loading="lazy"></div></div>
-  </div>
-</section>
-
-<section class="round b" style="background:linear-gradient(180deg,#0a0709,#150a0d 50%,#0a0709)">
-  <div class="num d">2</div>
-  <div class="wrap row">
-    <div class="shot rv"><div class="fr" data-par><img src="deck.jpg" alt="Plato de DJ de Musicologo" loading="lazy"></div></div>
-    <div class="copy rv"><span class="lab d">Round 2</span>
-      <h3 class="d">Tú tienes <span class="gold">el control</span></h3>
-      <p>Toca MANUAL y los platos son tuyos. El disco hace scratch. El aro de afuera es la canción entera: toca el minuto que quieres y se queda ahí.</p>
-      <ul><li>CUE, 8 hot cues por plato y loops.</li><li>Ecualizador por canal y de 10 bandas.</li><li>Sampler ilimitado: 19 botones y una galería para todos tus sonidos.</li><li>Conecta tu controlador de DJ por USB (más abajo).</li></ul>
-    </div>
-  </div>
-</section>
-
-<section class="round a midi" id="midi">
-  <div class="num d">♪</div>
-  <div class="wrap row">
-    <div class="copy rv"><span class="lab d">Tu controlador</span>
+<section class="fx" id="midi">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="media/midi.jpg" alt="Controlador de DJ USB conectado a una tableta con Musicologo" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Tu controlador</span>
       <h3 class="d">Conecta tu <span class="gold">controlador</span></h3>
-      <p>Enchufa tu controlador de DJ a la tableta por USB (con un adaptador OTG) y la app lo reconoce sola. Tú le enseñas cada control: tocas <b>APRENDER</b> en una función, mueves la perilla o el botón, y queda asignado.</p>
-      <ul>
-        <li>Más de 70 funciones asignables: play, CUE, loops, hot cues, jog y scratch, EQ, filtros, faders, crossfader, volumen y 12 botones del sampler.</li>
-        <li>Sirve con controladores USB MIDI estándar, de cualquier marca.</li>
-        <li>El ícono MIDI de la consola se pone verde cuando detecta uno, y lo que aprendes se queda guardado.</li>
-      </ul>
+      <p>Enchufa tu controlador de DJ a la tableta por USB, con un adaptador OTG, y la app lo reconoce sola. Tú le enseñas cada control y queda guardado.</p>
+      <div class="steps"><div><b>1</b><span>Conéctalo por USB. El ícono MIDI se pone verde.</span></div><div><b>2</b><span>Toca <b style="display:inline;font-size:inherit;color:#fff">APRENDER</b> en una función.</span></div><div><b>3</b><span>Mueve la perilla o el botón. Listo, asignado.</span></div></div>
+      <ul><li>Más de 70 funciones: play, CUE, loops, hot cues, jog y scratch, EQ, filtros, faders, crossfader, volumen y 12 botones del sampler.</li><li>Sirve con controladores USB MIDI estándar, de cualquier marca.</li></ul>
       <p class="mn">Estamos probando con controladores reales: dinos cuál usas y lo ponemos primero.</p>
     </div>
-    <div class="midiart rv" aria-hidden="true">
-      <svg viewBox="0 0 320 320" width="100%"><defs><radialGradient id="mg" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#ffb347"/><stop offset="1" stop-color="#e5242b"/></radialGradient></defs>
-        <circle cx="160" cy="160" r="140" fill="#0f0c11" stroke="url(#mg)" stroke-width="6"/>
-        <circle cx="160" cy="160" r="104" fill="#171219" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
-        <g fill="#ffb347"><circle cx="86" cy="168" r="9"/><circle cx="104" cy="118" r="9"/><circle cx="160" cy="98" r="9"/><circle cx="216" cy="118" r="9"/><circle cx="234" cy="168" r="9"/></g>
-        <rect x="150" y="226" width="20" height="26" rx="4" fill="#ff2a36"/>
-        <text x="160" y="190" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="44" fill="#fff" letter-spacing="3">MIDI</text>
-      </svg>
-    </div>
   </div>
 </section>
 
-<section class="round a">
-  <div class="num d">3</div>
-  <div class="wrap row">
-    <div class="copy rv"><span class="lab d">Round 3</span>
+<section class="fx rev" id="pedidos">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="media/qr.jpg" alt="Invitados escaneando un código QR en la fiesta" loading="lazy"></div><div class="ins phone"><img src="pedidos.jpg" alt="Página de pedidos en el celular del invitado" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 3</span>
       <h3 class="d">La pista <span class="red">pide</span></h3>
       <p>Un cartel con un código QR. El invitado lo escanea con su celular, sin instalar nada ni conectarse a tu WiFi, y pide su canción.</p>
       <ul><li>Busca de la A a la Z, solo dentro de lo que suena en tu fiesta.</li><li>Pocos pedidos por persona, para que no te quiten la fiesta.</li><li>Le dice «faltan 3 canciones antes de la tuya».</li></ul>
-      <h4 class="d" style="margin:26px 0 8px;font-size:26px;color:#ffb347">Y de paso, te promociona</h4>
+      <h4 class="d sub2">Y de paso, te promociona</h4>
       <p>La misma página que abre el invitado muestra <b>tus datos de contratación</b>: teléfono, WhatsApp, correo, web, Instagram y Facebook, cada uno con su botón para llamar o escribir con un toque.</p>
-      <ul><li>Quien se divierte en tu fiesta ve cómo contratarte en el momento en que más ganas tiene.</li><li>Tú escribes tus datos una sola vez en Ajustes y salen en todos los pedidos.</li><li>Cada fiesta es una vitrina: el cartel con el QR trabaja para ti toda la noche.</li></ul>
+      <ul><li>Quien se divierte en tu fiesta ve cómo contratarte justo cuando más ganas tiene.</li><li>Escribes tus datos una sola vez en Ajustes y salen en todos los pedidos.</li></ul>
     </div>
-    <div class="shot p rv"><div class="fr"><img src="pedidos.jpg" alt="Página de pedidos en el celular del invitado" loading="lazy"></div></div>
   </div>
 </section>
 
 <section class="lights">
-  <div class="rays"><i></i><i></i><i></i><i></i></div>
+  <div class="bg"><img src="media/luces.jpg" alt="" loading="lazy"></div>
   <div class="wrap in rv">
     <span class="lab d">Round 4</span>
     <h3 class="d">Que la pista<br><span class="red">se prenda</span></h3>
@@ -363,18 +357,27 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
   </div>
 </section>
 
-<section class="tape2">
+<section class="plans" id="pro">
   <div class="wrap">
-    <div class="hd rv"><p>LOS NÚMEROS DEL COMBATE</p><h2 class="d">En el cuadrilátero</h2></div>
-    <div class="tbl rv">
-      <div><span>Platos<small>cada uno con su scratch, aro de búsqueda y CUE</small></span><b data-n="2">0</b></div>
-      <div><span>Sonidos en tu galería<small>sin límite: 19 botones en la consola y el botón + para cambiarlos</small></span><b>∞</b></div>
-      <div><span>Hot cues por plato<small>puntos de salto guardados</small></span><b data-n="8">0</b></div>
-      <div><span>Bandas de ecualizador<small>más preamp y ancho estéreo</small></span><b data-n="10">0</b></div>
-      <div><span>Consolas para escoger<small>de rack gris a neón</small></span><b data-n="20">0</b></div>
-      <div><span>De dónde toca tu música<small>este equipo, Airsonic · Subsonic, NAS · WebDAV</small></span><b data-n="3">0</b></div>
-      <div><span>Funciones para tu controlador MIDI<small>cada una se enseña con un toque</small></span><b data-n="70">0</b></div>
+    <div class="hd rv"><span class="lab d">Gratis o PRO</span><h2 class="d">Empieza <span class="red">gratis</span></h2><p>Prueba el mezclador automático sin pagar. Cuando quieras toda la consola, pasas a PRO.</p></div>
+    <div class="pcs rv">
+      <div class="pc"><h3 class="d">Gratis</h3><p class="sb">Para conocer la app</p>
+        <ul><li>Mezcla automática y lista de canciones</li><li>45 minutos de música al día</li><li>4 sonidos en el sampler</li><li class="no">Modo manual</li><li class="no">Sets, ecualizador, luces</li><li class="no">Controlador MIDI y pedidos por QR</li></ul></div>
+      <div class="pc pro"><span class="rib">TODO LO DEMÁS</span><h3 class="d gold">PRO</h3><p class="sb">La consola completa, sin límite de horas</p>
+        <ul><li>Todo lo gratis, sin límite de tiempo</li><li>Modo manual con los dos platos</li><li>Sets por carpetas y ecualizador de 10 bandas</li><li>Luces que siguen la música</li><li>Controlador MIDI</li><li>Pedidos por QR y tus datos de contratación</li><li>Sampler: 19 botones y galería sin límite</li></ul>
+        <div class="price"><div class="best"><b>49.99</b><span>USD al año</span><small>ahorras casi 40%</small></div><div><b>6.99</b><span>USD al mes</span><small>cancelas cuando quieras</small></div></div>
+        <p class="fine">Se cobra por Google Play cuando la app esté disponible.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="nums">
+  <div class="wrap row5 rv">
+    <div><b data-n="2">0</b><span>Platos</span></div>
+    <div><b data-n="8">0</b><span>Hot cues por plato</span></div>
+    <div><b data-n="10">0</b><span>Bandas de ecualizador</span></div>
+    <div><b data-n="70">0</b><span>Funciones MIDI</span></div>
+    <div><b>∞</b><span>Sonidos en la galería</span></div>
   </div>
 </section>
 
@@ -391,35 +394,21 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
 
 <script>
 (function(){
-  var root=document.documentElement, $=function(s){return document.querySelector(s)};
-  var hero=$('#hero'), topbar=$('#topbar'), hi0=$('#heroin');
-  var E={word:$('.word'),plate:$('.plate'),tl:$('.tag.l'),tr:$('.tag.r'),vin:$('.vinyl'),stage:$('.stageimg'),hcta:$('.hcta'),cue:$('.cue'),mh:$('.mh')};
+  var $=function(s){return document.querySelector(s)};
+  var topbar=$('#topbar'),sb=false,busy=false;
   var pars=matchMedia('(hover:hover) and (pointer:fine)').matches?[].slice.call(document.querySelectorAll('[data-par]')):[];
-  var lastP=-1,busy=false,VH=innerHeight/100,scrolledBar=false;
-  function clamp(x){return x<0?0:x>1?1:x}
-  function apply(p){
-    E.word.style.transform='translate3d(0,'+(-30*VH*p).toFixed(1)+'px,0)';E.word.style.opacity=clamp(1-1.7*p).toFixed(3);
-    E.plate.style.opacity=clamp(1-1.9*p).toFixed(3);E.tl.style.opacity=E.tr.style.opacity=clamp(1-2*p).toFixed(3);
-    if(E.mh)E.mh.style.opacity=clamp(1-2.2*p).toFixed(3);
-    E.vin.style.scale=(1+.5*p).toFixed(3);E.vin.style.opacity=(.9-.5*p).toFixed(3);
-    E.stage.style.transform='perspective(1400px) rotateX('+(14*(1-p)).toFixed(2)+'deg) translate3d(0,'+(-36*VH*p).toFixed(1)+'px,0) scale('+(1+.3*p).toFixed(3)+')';
-    E.hcta.style.opacity=clamp((p-.5)*4).toFixed(3);E.cue.style.opacity=clamp(1-4*p).toFixed(3);
-  }
-  function frame(){
-    busy=false;
-    var h=hero.offsetHeight-innerHeight,p=h>0?clamp(scrollY/h):0;
-    if(Math.abs(p-lastP)>.0006){lastP=p;apply(p)}
-    var s2=scrollY>40;if(s2!==scrolledBar){scrolledBar=s2;topbar.classList.toggle('s',s2)}
-    for(var i=0;i<pars.length;i++){var r=pars[i].getBoundingClientRect(),c=(r.top+r.height/2-innerHeight/2)/innerHeight;pars[i].style.setProperty('--py',(c*-34).toFixed(1)+'px')}
-  }
+  function frame(){busy=false;var s=scrollY>40;if(s!==sb){sb=s;topbar.classList.toggle('s',s)}
+    for(var i=0;i<pars.length;i++){var r=pars[i].getBoundingClientRect();if(r.bottom<-100||r.top>innerHeight+100)continue;var c=(r.top+r.height/2-innerHeight/2)/innerHeight;pars[i].style.setProperty('--py',(c*-40).toFixed(1)+'px')}}
   function onScroll(){if(!busy){busy=true;requestAnimationFrame(frame)}}
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){VH=innerHeight/100;lastP=-1;onScroll()});
-  frame();
-  // animations stop when their section is out of sight
+  addEventListener('scroll',onScroll,{passive:true});frame();
+  // the hero video only runs while it is on screen (saves battery)
+  var v=$('#bgv');
+  if(v){
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+    else new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.01}).observe(v);
+  }
   var vis=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('paused',!e.isIntersecting)})},{rootMargin:'120px'});
-  [].forEach.call(document.querySelectorAll('.heroin,.lights,.tapew'),function(el){vis.observe(el)});
-  var hi=$('#heroin');
-  if(matchMedia('(hover:hover) and (pointer:fine)').matches)hi.addEventListener('mousemove',function(e){var r=hi.getBoundingClientRect();hi.style.setProperty('--mx',(e.clientX-r.left)+'px');hi.style.setProperty('--my',(e.clientY-r.top)+'px')});
+  [].forEach.call(document.querySelectorAll('.hero,.tapew'),function(el){vis.observe(el)});
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('on');io.unobserve(e.target);
     [].forEach.call(e.target.querySelectorAll('[data-n]'),function(b){var n=+b.dataset.n,t0=performance.now();(function f(t){var k=Math.min(1,(t-t0)/1100);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})})},{threshold:.12});
   [].forEach.call(document.querySelectorAll('.rv'),function(el){io.observe(el)});
@@ -540,8 +529,8 @@ footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18e
   }
   $('#galx').addEventListener('click',function(){gal.hidden=true});
   renderPads();renderGal();
-  var vg=$('.vglow'),sg=$('.sglow'),rys=$('.rays');
-  function setBeat(b){var v=b.toFixed(2);vg.style.opacity=(b*.8).toFixed(2);sg.style.opacity=v;rys.style.opacity=(.6+.4*b).toFixed(2)}
+  var vg=$('.vglow'),sg=$('.sglow'),rys={style:{}};
+  function setBeat(b){var v=b.toFixed(2);vg.style.opacity=(b*.8).toFixed(2);sg.style.opacity=v;}
   function draw(){
     if(!an||drawing)return; drawing=true;
     (function f(){
