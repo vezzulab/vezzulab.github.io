@@ -245,6 +245,22 @@ main{overflow-x:clip}
   .toy .hd h2,.say h2,.plans .hd h2{font-size:44px}
 }
 @media(max-width:560px){.rig .cnt{top:10px;right:14px}.rig .msg{top:auto;bottom:10px;left:14px}.rig canvas{height:150px}.fx .tx h3{font-size:46px}.lights h3{font-size:56px}.bell h2{font-size:54px}.pc{padding:24px 20px}.price b{font-size:34px}}
+
+/* closed beta */
+.beta{padding:110px 0 40px}
+.beta .hd{text-align:center;margin-bottom:34px}
+.beta .hd h2{font-size:clamp(44px,8vw,112px);margin:14px 0 12px}
+.beta .hd p{max-width:620px;margin:0 auto;color:#cdbdb2;font-size:18px}
+.bsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1000px;margin:0 auto}
+.bsteps div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:22px 20px}
+.bsteps b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:44px;color:var(--gold);line-height:1}
+.bsteps span{display:block;margin-top:10px;font-size:16px;color:#e6d9cf;line-height:1.4}
+.bcta{text-align:center;margin-top:30px}
+.bcta .big{margin:0 8px 12px}
+.bcta .big.off{background:#2a2630;color:#a99a91;cursor:default}
+.bcta .big.off:hover{background:#2a2630;color:#a99a91;transform:none}
+.bcta p{max-width:560px;margin:10px auto 0;font-size:14px;color:#a99a91}
+@media(max-width:900px){.bsteps{grid-template-columns:1fr}.beta{padding:80px 0 20px}.beta .hd h2{font-size:44px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.word span,.plate{opacity:1}}
 
 </style>
@@ -253,7 +269,7 @@ main{overflow-x:clip}
 
 <div class="top" id="topbar">
   <a class="l d" href="#top"><img src="icono.png" alt="">Musicologo</a>
-  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controlador</a><a class="t" href="#pedidos">Pedidos</a><a class="t" href="#pro">PRO</a><a class="t" href="en/" hreflang="en" onclick="try{sessionStorage.setItem('lang','en')}catch(e){}">EN</a><a class="pill" href="#bell">Próximamente</a></nav>
+  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controlador</a><a class="t" href="#pedidos">Pedidos</a><a class="t" href="#pro">PRO</a><a class="t" href="#beta">Beta</a><a class="t" href="en/" hreflang="en" onclick="try{sessionStorage.setItem('lang','en')}catch(e){}">EN</a><a class="pill" href="#bell">Próximamente</a></nav>
 </div>
 
 <main id="top">
@@ -265,7 +281,7 @@ main{overflow-x:clip}
   <h1 class="word d" aria-label="Musicologo"><span style="--i:0">M</span><span style="--i:1">U</span><span style="--i:2">S</span><span style="--i:3">I</span><span style="--i:4">C</span><span style="--i:5">O</span><span style="--i:6">L</span><span style="--i:7">O</span><span style="--i:8">G</span><span style="--i:9">O</span></h1>
   <div class="plate d">El Combate</div>
   <p class="sub">Mezcla sola, pedidos por QR, luces al ritmo y tu controlador de DJ. Para bodas, bares, quinceañeras y cualquier fiesta.</p>
-  <div class="cta"><a class="big go2" href="#prueba">Pruébala ahora</a><span class="badge"><i></i>Próximamente en Google Play</span></div>
+  <div class="cta"><a class="big go2" href="#prueba">Pruébala ahora</a><a class="big" href="#beta">Únete a la beta</a><span class="badge"><i></i>Próximamente en Google Play</span></div>
 </section>
 <div class="stage rv"><div class="sglow"></div><div class="fr"><img src="consola.jpg" alt="Consola Musicologo con dos platos, mezclador y sampler" fetchpriority="high"></div></div>
 
@@ -380,6 +396,23 @@ main{overflow-x:clip}
     <div><b data-n="10">0</b><span>Bandas de ecualizador</span></div>
     <div><b data-n="70">0</b><span>Funciones MIDI</span></div>
     <div><b>∞</b><span>Sonidos en la galería</span></div>
+  </div>
+</section>
+
+<section class="beta" id="beta">
+  <div class="wrap">
+    <div class="hd rv"><span class="lab d">Beta cerrada</span><h2 class="d">Pruébala <span class="red">antes que nadie</span></h2>
+      <p>Estamos probando Musicologo con un grupo reducido de DJs. Si tienes una tableta Android, únete y ayúdanos a dejarla perfecta.</p></div>
+    <div class="bsteps rv">
+      <div><b>1</b><span>Únete al grupo de testers con tu cuenta de Google (Gmail).</span></div>
+      <div><b>2</b><span>Cuando Google abra la prueba, aquí publicamos el enlace de invitación. Lo aceptas con la misma cuenta.</span></div>
+      <div><b>3</b><span>Instálala desde Google Play, úsala en tus fiestas y cuéntanos cómo te fue.</span></div>
+    </div>
+    <div class="bcta rv">
+      <a class="big go2" href="https://groups.google.com/g/musicologo-testers" target="_blank" rel="noopener">Unirme a los testers</a>
+      <span class="big off" id="dl">Descarga: muy pronto</span>
+      <p>Necesitas una tableta Android y una cuenta de Google. Cupos limitados. Te pedimos mantenerla instalada 14 días.</p>
+    </div>
   </div>
 </section>
 
