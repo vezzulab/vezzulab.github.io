@@ -406,8 +406,14 @@ main{overflow-x:clip}
   // the hero video only runs while it is on screen (saves battery)
   var v=$('#bgv');
   if(v){
-    if(matchMedia('(prefers-reduced-motion:reduce)').matches){v.removeAttribute('autoplay');v.pause()}
-    else new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.01}).observe(v);
+    v.muted=true;v.defaultMuted=true;v.setAttribute('playsinline','');
+    var want=true;
+    function tryPlay(){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+    new IntersectionObserver(function(es){es.forEach(function(e){want=e.isIntersecting;if(want)tryPlay();else v.pause()})},{threshold:.01}).observe(v);
+    v.addEventListener('canplay',function(){if(want&&v.paused)tryPlay()});
+    // a phone in low-power mode refuses to autoplay: the first touch or scroll starts the video
+    ['touchstart','touchend','pointerdown','click','scroll','keydown'].forEach(function(t){addEventListener(t,function(){if(want&&v.paused)tryPlay()},{passive:true})});
+    document.addEventListener('visibilitychange',function(){if(!document.hidden&&want&&v.paused)tryPlay()});
   }
   var vis=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('paused',!e.isIntersecting)})},{rootMargin:'120px'});
   [].forEach.call(document.querySelectorAll('.hero,.tapew'),function(el){vis.observe(el)});
