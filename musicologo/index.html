@@ -2,11 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<script>try{if(/[?&]l=es/.test(location.search))sessionStorage.setItem("lang","es");var l=(navigator.language||"es").toLowerCase();if(l.indexOf("es")!==0&&!sessionStorage.getItem("lang"))location.replace("en/")}catch(e){}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Musicologo · El Combate — la consola de DJ para tu tableta</title>
 <meta name="description" content="Musicologo · El Combate: la consola de DJ para tu tableta Android. Mezcla automática, modo manual, sets, pedidos por QR y luces. Pruébala aquí mismo.">
 <meta name="theme-color" content="#0a0709">
-<link rel="canonical" href="https://vezzulab.github.io/musicologo/">
+<link rel="canonical" href="https://vezzulab.github.io/musicologo/"><link rel="alternate" hreflang="en" href="https://vezzulab.github.io/musicologo/en/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Musicologo · El Combate">
 <meta property="og:locale" content="es_LA">
@@ -252,7 +253,7 @@ main{overflow-x:clip}
 
 <div class="top" id="topbar">
   <a class="l d" href="#top"><img src="icono.png" alt="">Musicologo</a>
-  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controlador</a><a class="t" href="#pedidos">Pedidos</a><a class="t" href="#pro">PRO</a><a class="pill" href="#bell">Próximamente</a></nav>
+  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controlador</a><a class="t" href="#pedidos">Pedidos</a><a class="t" href="#pro">PRO</a><a class="t" href="en/" hreflang="en" onclick="try{sessionStorage.setItem('lang','en')}catch(e){}">EN</a><a class="pill" href="#bell">Próximamente</a></nav>
 </div>
 
 <main id="top">
@@ -391,7 +392,7 @@ main{overflow-x:clip}
 </section>
 </main>
 
-<footer><span><b>MUSICOLOGO</b> · EL COMBATE</span><span>by vezzulab</span></footer>
+<footer><span><b>MUSICOLOGO</b> · EL COMBATE</span><span><a href="privacidad.html" style="color:inherit">Privacidad</a> · by vezzulab</span></footer>
 
 <script>
 (function(){

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy policy · Musicologo El Combate</title>
+<meta name="description" content="Privacy policy of Musicologo · El Combate, the DJ console for your tablet.">
+<link rel="icon" href="icono.png">
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton.woff2) format("woff2");font-display:swap}
+*{box-sizing:border-box;margin:0}
+body{background:#0a0709;color:#eadfd6;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.w{max-width:780px;margin:0 auto;padding:46px 22px 90px}
+a{color:#ffb347}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:34px;text-decoration:none;color:#fff}
+.top img{width:40px;height:40px;border-radius:9px}
+.top b{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:24px;letter-spacing:.04em;text-transform:uppercase}
+h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(40px,8vw,64px);line-height:1;color:#fff;margin-bottom:8px}
+h1 span{color:#ff2a36}
+.up{color:#a99a91;font-size:14px;margin-bottom:30px}
+h2{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;letter-spacing:.03em;color:#ffb347;margin:34px 0 8px}
+p,li{margin:8px 0;font-size:16.5px}
+ul{padding-left:22px}
+.box{border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(255,255,255,.05);padding:16px 18px;margin:18px 0}
+</style>
+</head>
+<body>
+<div class="w">
+<a class="top" href="./en/"><img src="icono.png" alt=""><b>Musicologo</b></a>
+<p class="up" style="margin:0 0 14px"><a href="privacidad.html">Español</a> · <b>English</b></p>
+<h1>Privacy <span>policy</span></h1>
+<p class="up">Musicologo · El Combate, by vezzulab · Last updated: October 14, 2026</p>
+
+<div class="box"><b>In short:</b> the app has no ads, no analytics or trackers, and does not ask you for an account. Your music, your settings and your contact details stay on your tablet. They only leave it if you turn on song requests by QR through the internet.</div>
+
+<h2>What data the app keeps on your device</h2>
+<ul>
+<li><b>Your settings:</b> console theme, sampler sounds, sets, equalizer, MIDI controller assignments and your DJ name.</li>
+<li><b>Your booking details</b> (phone, WhatsApp, email, website, Instagram, Facebook), if you choose to type them.</li>
+<li><b>Access details you set up:</b> the address and credentials of your music server (Airsonic, Subsonic, NAS or WebDAV) and of your lights (for example, the Home Assistant token). They are saved only on your device and used only to talk to those devices.</li>
+<li><b>Your music:</b> the app reads the files you point it to. It does not upload them anywhere.</li>
+</ul>
+
+<h2>Song requests by QR</h2>
+<p>The song requests feature (PRO) creates a page that your guests open on their phones.</p>
+<ul>
+<li><b>On the same WiFi:</b> the page is served by your tablet directly. The data does not go through any server of ours.</li>
+<li><b>Over the internet (permanent poster):</b> if you turn this option on, the tablet tells a small service on Cloudflare every minute what its address is inside the network, and temporarily sends it your DJ name, your booking details, the names of the folders and songs of the party and the song that is playing. The guests' requests (the chosen song) also pass through it until the tablet picks them up.</li>
+<li>To limit the requests per person, the service keeps an anonymous code that the guest's browser generates and an encrypted fingerprint of their IP address (not the address itself). These counters are deleted automatically after 4 hours.</li>
+<li>Retention times in the service: the address of your tablet, 15 minutes; the party data (DJ, contact, song playing), 4 hours; the song list of the party, up to 7 days; and an anonymous identifier of your tablet (a code and an encrypted secret) while you keep using the service.</li>
+<li>No names, emails or phone numbers of guests are collected.</li>
+</ul>
+
+<h2>Purchases</h2>
+<p>PRO is bought as a subscription on Google Play. Google processes the payment; the app does not see or keep your card or payment details. It only knows whether your subscription is active.</p>
+
+<h2>Permissions the app asks for</h2>
+<ul>
+<li><b>Internet and WiFi state:</b> to bring music from your server, show the address of the requests and talk to your lights.</li>
+<li><b>Location and nearby WiFi devices:</b> Android requires them to create the party's WiFi network (local hotspot). The app does not use or keep your location.</li>
+<li><b>Notifications and foreground service:</b> so the music does not cut while the app is in use.</li>
+<li><b>Keep the screen on:</b> so the tablet does not turn off during the party.</li>
+<li><b>USB and MIDI:</b> for your DJ controller, if you connect one.</li>
+</ul>
+
+<h2>Who we share data with</h2>
+<p>We do not sell or share data with advertisers. The only services involved are Google Play (purchases) and, if you turn on requests over the internet, Cloudflare (which hosts the small service described above).</p>
+
+<h2>Children</h2>
+<p>The app is not directed at children under 13 and does not knowingly collect data from minors.</p>
+
+<h2>Your rights</h2>
+<p>Because the data is on your device, you can delete it whenever you want by uninstalling the app or clearing its data from Android settings. If you have questions about this policy, write to <a href="mailto:vezzulab@gmail.com">vezzulab@gmail.com</a>.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, we will publish the new version on this same page with the update date.</p>
+
+<p class="up" style="margin-top:36px"><a href="./en/">← Back to Musicologo</a></p>
+</div>
+</body>
+</html>

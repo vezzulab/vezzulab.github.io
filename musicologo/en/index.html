@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Musicologo · El Combate — the DJ console for your tablet</title>
+<meta name="description" content="Musicologo · El Combate: the DJ console for your Android tablet. Automatic mixing, manual mode, sets, requests by QR and lights. Try it right here.">
+<meta name="theme-color" content="#0a0709">
+<link rel="canonical" href="https://vezzulab.github.io/musicologo/en/"><link rel="alternate" hreflang="es" href="https://vezzulab.github.io/musicologo/"><link rel="alternate" hreflang="en" href="https://vezzulab.github.io/musicologo/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Musicologo · El Combate">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Musicologo · El Combate — the DJ console for your tablet">
+<meta property="og:description" content="Automatic mixing, unlimited sampler, requests by QR and lights on the beat. Try it right here.">
+<meta property="og:url" content="https://vezzulab.github.io/musicologo/en/">
+<meta property="og:image" content="https://vezzulab.github.io/musicologo/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Musicologo · El Combate: la consola de DJ para tu tableta">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Musicologo · El Combate — la consola de DJ para tu tableta">
+<meta name="twitter:description" content="Automatic mixing, unlimited sampler, requests by QR and lights on the beat.">
+<meta name="twitter:image" content="https://vezzulab.github.io/musicologo/og.jpg">
+<link rel="icon" href="../icono.png">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/anton.woff2) format("woff2");font-display:swap}
+:root{--vh:1vh;--beat:0;--p:0;--red:#ff2a36;--deep:#8e1a20;--gold:#ffb347;--ink:#0a0709;--paper:#e9dfcc}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{overflow-x:hidden;background:var(--ink);color:#f4ece4;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.d{font-family:Anton,Impact,"Arial Narrow",sans-serif;text-transform:uppercase;font-weight:400;letter-spacing:.01em;line-height:.92}
+.red{color:var(--red)}.gold{color:var(--gold)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 26px}
+.pill{font-family:Anton,Impact,sans-serif;text-transform:uppercase;text-decoration:none;font-size:15px;letter-spacing:.12em;padding:10px 22px;background:var(--red);color:#fff;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:.2s;border:0;cursor:pointer}
+.pill:hover{background:#fff;color:#000}
+.pill.g{background:rgba(255,255,255,.14);color:#fff}
+.tapew{overflow:hidden;position:relative;z-index:8;padding:16px 0;margin-top:-2vh}
+.tape{position:relative;z-index:8;rotate:-1.6deg;background:var(--gold);color:#0a0709;overflow:hidden;padding:12px 0;box-shadow:0 10px 40px rgba(0,0,0,.6);margin:0 -6vw}
+.tape div{display:flex;gap:34px;width:max-content;font-size:clamp(20px,2.6vw,34px);animation:tp 30s linear infinite;letter-spacing:.06em}
+.tape b{color:var(--red)}
+@keyframes tp{to{transform:translateX(-50%)}}
+/* ---------- the toy rig ---------- */
+.toy{padding:120px 0 40px}
+.toy .hd{text-align:center;margin-bottom:46px}
+.toy .hd h2{font-size:clamp(44px,8vw,112px);margin:16px 0 14px}
+.toy .hd p{max-width:600px;margin:0 auto;color:#cdbdb2;font-size:18px}
+.lab{display:inline-block;font-size:15px;letter-spacing:.3em;padding:.5em 1.1em;background:var(--red);color:#fff;margin-bottom:22px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.rig{position:relative;max-width:980px;margin:0 auto;padding:22px;border-radius:26px;background:linear-gradient(160deg,#2b262d,#0f0c11 55%,#17111a);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 0 6px #0a0709,0 0 0 8px rgba(255,255,255,.12),0 50px 120px rgba(255,42,54,.3)}
+.rig .screen{position:relative;border-radius:14px;background:#04060a;border:2px solid #000;box-shadow:inset 0 0 40px rgba(0,0,0,.9);overflow:hidden}
+.rig canvas{display:block;width:100%;height:180px}
+.rig .bpm{position:absolute;right:16px;top:10px;font-family:Anton,Impact,sans-serif;font-size:26px;color:var(--gold);letter-spacing:.06em}
+.rig .bpm small{font-size:14px;color:#8a7d73}
+.rig .msg{position:absolute;left:16px;top:12px;font-size:12px;letter-spacing:.22em;color:#8a7d73}
+.ctl{display:none;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:22px}
+.ctl0{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:22px}
+.go{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:24px;letter-spacing:.12em;padding:18px 34px;border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,#1fb855,#25d366);clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);box-shadow:0 0 30px rgba(37,211,102,.5)}
+.go.on{background:linear-gradient(135deg,#b5121b,#ff2a36)}
+.xf{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;font-family:Anton,Impact,sans-serif;letter-spacing:.1em;font-size:17px;text-transform:uppercase}
+.xf span:first-child{color:var(--gold)}.xf span:last-child{color:#22d3ee}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:46px;background:transparent;cursor:ew-resize;touch-action:pan-y}
+input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--gold),#3a2c36 50%,#22d3ee);box-shadow:inset 0 2px 6px rgba(0,0,0,.7)}
+input[type=range]::-moz-range-track{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--gold),#3a2c36 50%,#22d3ee)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:56px;height:44px;margin-top:-17px;border-radius:6px;background:linear-gradient(90deg,#444,#e8e8ee 45%,#fff 50%,#e8e8ee 55%,#444);border:2px solid #111;box-shadow:0 8px 18px rgba(0,0,0,.7)}
+input[type=range]::-moz-range-thumb{width:52px;height:40px;border-radius:6px;background:#e8e8ee;border:2px solid #111}
+.pads{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.pad{position:relative;height:74px;border:0;border-radius:14px;cursor:pointer;font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:16px;padding:0 4px;color:#14110f;background:linear-gradient(#fbfaf6,#c9c4b8);box-shadow:0 8px 0 #8d887c,0 14px 24px rgba(0,0,0,.6);transition:transform .06s,box-shadow .06s;touch-action:manipulation}
+.pad:active,.pad.h{transform:translateY(6px);box-shadow:0 2px 0 #8d887c,0 6px 14px rgba(0,0,0,.6);background:linear-gradient(#ffd9b8,var(--gold))}
+.pad small{display:block;font-family:system-ui,sans-serif;font-size:10px;letter-spacing:.14em;color:#6b655a;margin-top:4px}
+.rig .cnt{position:absolute;right:16px;top:12px;font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:800}
+.pad.e{background:#15121a;box-shadow:inset 0 3px 10px #000,0 1px 0 rgba(255,255,255,.07);cursor:default}
+.pad.plus{background:linear-gradient(#ffb347,#e5242b);color:#fff;box-shadow:0 8px 0 #8e1a20,0 14px 24px rgba(0,0,0,.6);font-size:30px;line-height:1}
+.pad.plus small{color:#fff;font-size:10px;margin-top:2px;font-family:system-ui,sans-serif;letter-spacing:.12em}
+.pad.plus:active{box-shadow:0 2px 0 #8e1a20}
+.gal{margin-top:18px;border-radius:16px;background:#0b090e;border:1px solid rgba(255,255,255,.16);padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.gal[hidden]{display:none}
+.galh{display:flex;justify-content:space-between;align-items:center}
+.galh b{font-size:26px}
+.galh .x{border:0;background:#1b1b26;width:44px;height:44px;border-radius:10px;cursor:pointer;font-size:18px}
+.galp{margin:8px 0 12px;font-size:13px;color:#a99a91}
+#gallist{max-height:330px;overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.gi{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.gi span{flex:1;font-weight:800;letter-spacing:.04em;font-size:15px}
+.gi span.off{color:#7a6e66}
+.gi button{border:0;border-radius:9px;height:40px;cursor:pointer;font-weight:800;font-size:12px;letter-spacing:.06em;background:#1b1b26;color:#fff;padding:0 12px}
+.gi button.pl{width:42px;padding:0}
+.gi button.q{background:#8e1a20}.gi button.p{background:#22d3ee;color:#000}
+.rig .note{margin-top:18px;font-size:12.5px;color:#8f8278;text-align:center}
+.big{display:inline-block;font-family:Anton,Impact,sans-serif;text-transform:uppercase;text-decoration:none;font-size:clamp(22px,3vw,34px);letter-spacing:.14em;padding:.7em 2em;background:var(--red);color:#fff;clip-path:polygon(18px 0,100% 0,calc(100% - 18px) 100%,0 100%);transition:.2s}
+.big:hover{background:#fff;color:#000;transform:scale(1.04)}
+.big.soon{cursor:default}.big.soon:hover{background:var(--red);color:#fff;transform:none}
+footer{padding:36px 26px 46px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);color:#a99a91;font-size:14px;background:#0a0709}
+footer b{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.18em;color:#fff}
+.paused *,.paused{animation-play-state:paused!important}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s}.rv.on{opacity:1;transform:none}
+
+/* ============ NEW DESIGN ============ */
+html{scroll-behavior:smooth;scroll-padding-top:70px;overflow-x:hidden}
+body{overflow-x:hidden;position:relative}
+main{overflow-x:clip}
+.top{position:fixed;inset:0 0 auto 0;z-index:70;display:flex;justify-content:space-between;align-items:center;padding:14px 26px;transition:background .3s,backdrop-filter .3s}
+.top.s{background:rgba(10,7,9,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top a.l{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:22px}
+.top a.l img{width:34px;height:34px;border-radius:8px}
+.top nav{display:flex;gap:26px;align-items:center}
+.top nav a.t{font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-decoration:none;color:#e6d9cf;opacity:.8}
+.top nav a.t:hover{opacity:1;color:var(--gold)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 22px 170px;overflow:hidden;background:#0a0709;isolation:isolate}
+.hero .bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;filter:saturate(1.25) brightness(1.1)}
+.hero:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(90% 70% at 50% 40%,rgba(10,7,9,.25),rgba(10,7,9,.82) 78%),linear-gradient(180deg,rgba(10,7,9,.55),rgba(10,7,9,.05) 35%,rgba(10,7,9,.95))}
+.hero .vglow{position:absolute;left:50%;top:50%;width:80vmax;height:80vmax;translate:-50% -50%;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,42,54,.5),transparent 60%);opacity:0;pointer-events:none}
+.hero .slash{position:absolute;top:0;bottom:0;background:linear-gradient(var(--red),var(--deep));transform:skewX(-14deg);opacity:.8;z-index:-1}
+.hero .slash.a{left:2vw;width:2.4vw}.hero .slash.b{left:6vw;width:.8vw;opacity:.45}.hero .slash.c{right:2vw;width:2.4vw}.hero .slash.d{right:6vw;width:.8vw;opacity:.45}
+.kick{display:inline-block;font-size:clamp(11px,1.4vw,15px);letter-spacing:.34em;font-weight:800;color:var(--gold);padding:.55em 1.2em;border:1px solid rgba(255,179,71,.5);background:rgba(10,7,9,.5);margin-bottom:22px;text-transform:uppercase}
+.word{font-size:clamp(50px,15.2vw,236px);color:#fff;white-space:nowrap;text-shadow:0 .02em 0 var(--deep),0 .05em .3em rgba(0,0,0,.7)}
+.word span{display:inline-block;transform:skewX(-8deg);animation:slam .8s cubic-bezier(.2,1.4,.3,1) both;animation-delay:calc(var(--i)*70ms + .15s)}
+@keyframes slam{from{opacity:0;transform:translateY(-70%) skewX(-8deg) scaleY(1.5)}60%{opacity:1}to{opacity:1;transform:skewX(-8deg)}}
+.plate{display:inline-block;margin-top:.2em;rotate:-3deg;background:var(--red);padding:.4em 1.4em;font-size:clamp(18px,3.6vw,50px);letter-spacing:.34em;text-indent:.34em;color:#fff;box-shadow:0 14px 50px rgba(255,42,54,.6);clip-path:polygon(2.5% 0,100% 0,97.5% 100%,0 100%);animation:pop .6s cubic-bezier(.2,1.5,.3,1) 1.05s both}
+@keyframes pop{from{scale:0;opacity:0}to{scale:1}}
+.sub{max-width:620px;margin:26px auto 0;font-size:clamp(16px,1.9vw,21px);color:#eadfd6;text-shadow:0 2px 20px #000}
+.cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;margin-top:30px}
+.big.go2{background:linear-gradient(135deg,#b5121b,#ff2a36 60%,#ff6b3a)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:.7em 1.5em;border:2px solid rgba(255,255,255,.7);background:rgba(10,7,9,.55);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:clamp(12px,1.3vw,15px);border-radius:999px}
+.badge i{width:10px;height:10px;background:var(--gold);border-radius:50%;box-shadow:0 0 12px var(--gold);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.stage{position:relative;z-index:5;width:min(960px,90vw);margin:-150px auto 0;transform:perspective(1500px) rotateX(10deg);transform-origin:50% 100%}
+.stage .fr{position:relative;border-radius:22px;padding:9px;background:linear-gradient(150deg,#2a2630,#0d0b10);border:1px solid rgba(255,255,255,.2);box-shadow:0 -20px 100px rgba(255,42,54,.45),0 40px 120px rgba(0,0,0,.85)}
+.stage img{border-radius:14px;width:100%}
+.stage .sglow{position:absolute;inset:0;border-radius:30px;box-shadow:0 0 120px 30px rgba(255,42,54,.7);opacity:0;pointer-events:none}
+
+/* ticker */
+.tapew{overflow:hidden;position:relative;z-index:8;padding:16px 0 10px;margin-top:90px}
+
+/* statements */
+.say{padding:120px 0 30px;text-align:center}
+.say .k{font-size:13px;letter-spacing:.4em;font-weight:800;color:var(--gold)}
+.say h2{font-size:clamp(44px,8.4vw,120px);margin:16px 0 20px}
+.say p.s{max-width:660px;margin:0 auto;font-size:clamp(17px,1.8vw,21px);color:#cdbdb2}
+
+/* feature rows with photos */
+.fx{position:relative;padding:90px 0}
+.fx .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+.fx.rev .grid{grid-template-columns:1fr 1.15fr}.fx.rev .ph{order:2}
+.ph{position:relative}
+.ph .pic{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 100px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.14)}
+.ph .pic img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;transform:translateY(var(--py,0))}
+.ph .pic:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,7,9,.55))}
+.ph .ins{position:absolute;right:-5%;bottom:-9%;width:44%;border-radius:16px;padding:6px;background:linear-gradient(150deg,#2a2630,#0d0b10);border:1px solid rgba(255,255,255,.22);box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 60px rgba(255,42,54,.35)}
+.ph .ins img{border-radius:11px;width:100%;max-height:340px;object-fit:cover;object-position:top}
+.fx.rev .ph .ins{right:auto;left:-5%}
+.ph .ins.phone{width:30%;border-radius:30px}
+.ph .ins.phone img{border-radius:24px;max-height:430px}
+.fx .tx .lab{margin-bottom:18px}
+.fx .tx h3{font-size:clamp(42px,6vw,88px);margin-bottom:20px}
+.fx .tx p{font-size:clamp(17px,1.6vw,20px);color:#d6c7bd;max-width:520px}
+.fx .tx ul{list-style:none;padding:0;margin-top:20px}
+.fx .tx li{display:flex;gap:14px;padding:11px 0;border-top:1px solid rgba(255,255,255,.14);font-size:17px;color:#e6d9cf}
+.fx .tx li:before{content:"";flex:none;width:10px;height:10px;margin-top:9px;background:var(--red);transform:skewX(-14deg)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.steps div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 14px}
+.steps b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:34px;color:var(--gold);line-height:1}
+.steps span{display:block;margin-top:8px;font-size:14px;color:#e6d9cf;line-height:1.35}
+.mn{margin-top:18px;font-size:14px;color:#a99a91}
+.sub2{margin:26px 0 8px;font-size:26px;color:var(--gold)}
+
+/* sampler section */
+.toy{position:relative;padding:130px 0 70px;overflow:hidden}
+.toy .bgph{position:absolute;inset:0;z-index:-1}
+.toy .bgph img{width:100%;height:100%;object-fit:cover;opacity:.32}
+.toy .bgph:after{content:"";position:absolute;inset:0;background:linear-gradient(#0a0709,rgba(10,7,9,.55) 30%,rgba(10,7,9,.7) 70%,#0a0709)}
+.toy .sglow{position:absolute;inset:0;border-radius:26px;box-shadow:0 0 130px 20px rgba(255,42,54,.65);opacity:0;pointer-events:none}
+
+/* lights */
+.lights{position:relative;overflow:hidden;padding:150px 0;background:#000;text-align:center;isolation:isolate}
+.lights .bg{position:absolute;inset:0;z-index:-2}
+.lights .bg img{width:100%;height:100%;object-fit:cover;opacity:.75}
+.lights:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#0a0709,rgba(10,7,9,.2) 30%,rgba(10,7,9,.35) 70%,#0a0709)}
+.lights .in{position:relative;z-index:2}
+.lights h3{font-size:clamp(54px,11vw,170px);text-shadow:0 0 60px rgba(0,0,0,.9)}
+.lights p{max-width:560px;margin:20px auto 0;color:#f0e3d9;font-size:19px;text-shadow:0 2px 20px #000}
+.brands{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px}
+.brands span{font-family:Anton,Impact,sans-serif;text-transform:uppercase;font-size:20px;letter-spacing:.1em;padding:.4em 1.2em;border:2px solid #fff;background:rgba(0,0,0,.55)}
+
+/* free vs pro */
+.plans{padding:120px 0 90px}
+.plans .hd{text-align:center;margin-bottom:46px}
+.plans .hd h2{font-size:clamp(44px,8vw,112px);margin:14px 0 12px}
+.plans .hd p{max-width:560px;margin:0 auto;color:#cdbdb2;font-size:18px}
+.pcs{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;max-width:1000px;margin:0 auto;align-items:stretch}
+.pc{border-radius:24px;padding:30px 28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
+.pc h3{font-size:44px;margin-bottom:6px}
+.pc .sb{font-size:14px;color:#a99a91;margin-bottom:18px}
+.pc ul{list-style:none;padding:0}
+.pc li{padding:9px 0 9px 30px;position:relative;border-top:1px solid rgba(255,255,255,.1);font-size:16px;color:#e6d9cf}
+.pc li:before{content:"✓";position:absolute;left:4px;color:var(--gold);font-weight:800}
+.pc li.no{color:#85766d}.pc li.no:before{content:"–";color:#85766d}
+.pc.pro{position:relative;background:linear-gradient(160deg,#3a0f15,#17090c 60%);border:2px solid var(--gold);box-shadow:0 0 90px rgba(255,42,54,.3)}
+.pc.pro .rib{position:absolute;top:-16px;right:24px;background:var(--red);color:#fff;font-weight:800;letter-spacing:.14em;font-size:12px;padding:.5em 1.1em;border-radius:8px}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 4px}
+.price div{border-radius:16px;padding:14px;text-align:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}
+.price div.best{background:linear-gradient(135deg,#ffd27a,#ffb347 55%,#ff8a3d);color:#140d0d;border:0}
+.price b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:40px;line-height:1}
+.price span{display:block;font-size:13px;font-weight:700;margin-top:4px}
+.price small{display:block;font-size:11.5px;opacity:.75;margin-top:2px}
+.fine{margin-top:12px;font-size:12px;color:#a99a91;text-align:center}
+
+/* numbers strip */
+.nums{background:var(--paper);color:#140d0d;padding:70px 0}
+.nums .row5{display:flex;flex-wrap:wrap;justify-content:center;gap:26px 0;text-align:center}
+.nums .row5>div{flex:0 0 20%}
+.nums b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:clamp(46px,6.4vw,92px);color:var(--red);line-height:1}
+.nums span{display:block;margin-top:8px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:12.5px}
+
+/* final */
+.bell{position:relative;padding:150px 0 90px;text-align:center;overflow:hidden;background:radial-gradient(80% 60% at 50% 100%,#4a0d14,#0a0709)}
+.bell h2{font-size:clamp(54px,12vw,190px)}
+.bell p{max-width:540px;margin:22px auto 36px;font-size:19px;color:#dccdc3}
+.big.soon{cursor:default}.big.soon:hover{background:var(--red);color:#fff;transform:none}
+
+@media(max-width:900px){
+  .top nav a.t{display:none}
+  .top{padding:12px 16px}
+  .hero{padding:96px 18px 120px;min-height:92svh}
+  .hero .slash.b,.hero .slash.d{display:none}
+  .stage{margin-top:-110px;width:96vw;transform:perspective(1100px) rotateX(8deg)}
+  .tapew{margin-top:50px}
+  .ph .ins img{max-height:240px}.ph .ins.phone img{max-height:300px}
+  .fx{padding:64px 0}
+  .fx .grid,.fx.rev .grid{grid-template-columns:1fr;gap:46px}.fx.rev .ph{order:0}
+  .ph .ins{right:-2%;bottom:-8%;width:46%}.fx.rev .ph .ins{left:-2%}.ph .ins.phone{width:34%}
+  .pcs{grid-template-columns:1fr}
+  .nums .row5>div{flex:0 0 33.33%}
+  .word{font-size:17.6vw}
+  .lights{padding:100px 0}
+  .say{padding:80px 0 10px}
+  .toy{padding:90px 0 50px}
+  .pads{grid-template-columns:repeat(4,1fr);gap:8px}.pad{height:62px;font-size:12px}#gallist{grid-template-columns:1fr}.rig{padding:14px}
+  .steps{grid-template-columns:1fr}
+  .toy .hd h2,.say h2,.plans .hd h2{font-size:44px}
+}
+@media(max-width:560px){.rig .cnt{top:10px;right:14px}.rig .msg{top:auto;bottom:10px;left:14px}.rig canvas{height:150px}.fx .tx h3{font-size:46px}.lights h3{font-size:56px}.bell h2{font-size:54px}.pc{padding:24px 20px}.price b{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.word span,.plate{opacity:1}}
+
+</style>
+</head>
+<body>
+
+<div class="top" id="topbar">
+  <a class="l d" href="#top"><img src="../icono.png" alt="">Musicologo</a>
+  <nav><a class="t" href="#prueba">Sampler</a><a class="t" href="#midi">Controller</a><a class="t" href="#pedidos">Requests</a><a class="t" href="#pro">PRO</a><a class="t" href="../?l=es" hreflang="es">ES</a><a class="pill" href="#bell">Coming soon</a></nav>
+</div>
+
+<main id="top">
+<section class="hero" id="hero">
+  <video class="bgv" id="bgv" autoplay muted loop playsinline preload="auto" poster="../media/hero.jpg" aria-hidden="true"><source src="../media/hero.mp4" type="video/mp4"></video>
+  <div class="vglow"></div>
+  <div class="slash a"></div><div class="slash b"></div><div class="slash c"></div><div class="slash d"></div>
+  <span class="kick">The DJ console for your tablet</span>
+  <h1 class="word d" aria-label="Musicologo"><span style="--i:0">M</span><span style="--i:1">U</span><span style="--i:2">S</span><span style="--i:3">I</span><span style="--i:4">C</span><span style="--i:5">O</span><span style="--i:6">L</span><span style="--i:7">O</span><span style="--i:8">G</span><span style="--i:9">O</span></h1>
+  <div class="plate d">El Combate</div>
+  <p class="sub">Self-mixing, requests by QR, lights on the beat and your DJ controller. For weddings, bars, quinceañeras and any party.</p>
+  <div class="cta"><a class="big go2" href="#prueba">Try it now</a><span class="badge"><i></i>Coming soon to Google Play</span></div>
+</section>
+<div class="stage rv"><div class="sglow"></div><div class="fr"><img src="../consola.jpg" alt="Musicologo console with two decks, mixer and sampler" fetchpriority="high"></div></div>
+
+<div class="tapew"><div class="tape d" aria-hidden="true"><div>
+  <span>Self-mixing</span><b>✦</b><span>Requests by QR</span><b>✦</b><span>Any genre</span><b>✦</b><span>Two decks</span><b>✦</b><span>Unlimited sampler</span><b>✦</b><span>Lights on the beat</span><b>✦</b><span>MIDI controller</span><b>✦</b>
+  <span>Self-mixing</span><b>✦</b><span>Requests by QR</span><b>✦</b><span>Any genre</span><b>✦</b><span>Two decks</span><b>✦</b><span>Unlimited sampler</span><b>✦</b><span>Lights on the beat</span><b>✦</b><span>MIDI controller</span><b>✦</b>
+</div></div></div>
+
+<section class="say wrap rv">
+  <p class="k">YOU BRING THE MUSIC, SHE BRINGS THE FIGHT</p>
+  <h2 class="d">Step into the ring.<br><span class="red">Sound like a club.</span></h2>
+  <p class="s">Any genre, any party. You bring the folders and decide how much control you want: let the app mix for you, or take the decks yourself.</p>
+</section>
+
+<section class="fx">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="../media/boda.jpg" alt="Guests dancing at a wedding at night" loading="lazy"></div><div class="ins"><img src="../mezclador.jpg" alt="Musicologo mixer" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 1</span>
+      <h3 class="d">Self-<span class="red">mixing</span></h3>
+      <p>You pick the folders and the app does the rest: it matches the rhythm of the songs and switches on the beat. If the tempos are not alike, it does a clean fade, with no harsh cuts.</p>
+      <ul><li>The bass of one song leaves while the other's comes in.</li><li>Play your music from the tablet, from a server or from your NAS.</li><li>When the list runs out, it keeps going with new songs.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="fx rev">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="../media/manos.jpg" alt="A DJ's hands on the console on the tablet" loading="lazy"></div><div class="ins"><img src="../deck.jpg" alt="Musicologo DJ deck" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 2</span>
+      <h3 class="d">You are <span class="gold">in control</span></h3>
+      <p>Tap MANUAL and the decks are yours. The disc scratches. The outer ring is the whole song: tap the minute you want and it stays there.</p>
+      <ul><li>CUE, 8 hot cues per deck and loops.</li><li>Per-channel and 10-band equalizer.</li><li>Sets by folder: you choose how many songs from each.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="toy" id="prueba">
+ <div class="bgph"><img src="../media/luces.jpg" alt="" loading="lazy"></div>
+ <div class="wrap">
+  <div class="hd rv" style="text-align:center;margin-bottom:46px"><span class="lab d">Try it now</span>
+    <h2 class="d" style="font-size:clamp(44px,8vw,112px);margin:16px 0 14px"><span class="red">Unlimited</span> sampler</h2>
+    <p style="max-width:600px;margin:0 auto;color:#cdbdb2;font-size:18px">Keep all the sounds you want. The console shows 19 buttons and, at the end, the <b>+</b> button that opens your gallery to add or remove. Tap the buttons and open the gallery.</p></div>
+  <div class="rig rv">
+    <div class="sglow"></div>
+    <div class="screen"><canvas id="cv" width="1000" height="200"></canvas><div class="msg" id="msg">TAP A BUTTON</div><div class="cnt"><span id="cntv">19</span> / 19 IN THE SAMPLER</div></div>
+    <div class="pads" id="pads"></div>
+    <div class="gal" id="gal" hidden>
+      <div class="galh"><b class="d">Sound gallery</b><button class="x" id="galx" aria-label="Close">✕</button></div>
+      <p class="galp">Everything you want fits here. <b>ADD</b> puts a sound in the sampler and <b>REMOVE</b> takes it out (it stays saved). Maximum 19 at a time on the console.</p>
+      <div id="gallist"></div>
+    </div>
+    <p class="note">These are the same sounds as in the app. In the app you add your own.</p>
+  </div>
+ </div>
+</section>
+
+<section class="fx" id="midi">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="../media/midi.jpg" alt="USB DJ controller connected to a tablet running Musicologo" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Your controller</span>
+      <h3 class="d">Connect your <span class="gold">controller</span></h3>
+      <p>Plug your DJ controller into the tablet by USB, with an OTG adapter, and the app recognizes it by itself. You teach it each control and it is saved.</p>
+      <div class="steps"><div><b>1</b><span>Plug it in by USB. The MIDI icon turns green.</span></div><div><b>2</b><span>Tap <b style="display:inline;font-size:inherit;color:#fff">LEARN</b> on a function.</span></div><div><b>3</b><span>Move the knob or the button. Done, assigned.</span></div></div>
+      <ul><li>More than 70 functions: play, CUE, loops, hot cues, jog and scratch, EQ, filters, faders, crossfader, volume and 12 sampler buttons.</li><li>Works with standard USB MIDI controllers, of any brand.</li></ul>
+      <p class="mn">We are testing with real controllers: tell us which one you use and we will put it first.</p>
+    </div>
+  </div>
+</section>
+
+<section class="fx rev" id="pedidos">
+  <div class="wrap grid">
+    <div class="ph rv"><div class="pic" data-par><img src="../media/qr.jpg" alt="Guests scanning a QR code at the party" loading="lazy"></div><div class="ins phone"><img src="../pedidos.jpg" alt="Requests page on the guest's phone" loading="lazy"></div></div>
+    <div class="tx rv"><span class="lab d">Round 3</span>
+      <h3 class="d">The floor <span class="red">requests</span></h3>
+      <p>A poster with a QR code. The guest scans it with their phone, without installing anything or joining your WiFi, and requests their song.</p>
+      <ul><li>Search from A to Z, only within what is playing at your party.</li><li>Few requests per person, so they do not take over your party.</li><li>It tells them “3 songs before yours”.</li></ul>
+      <h4 class="d sub2">And it promotes you, too</h4>
+      <p>The same page the guest opens shows <b>your booking details</b>: phone, WhatsApp, email, website, Instagram and Facebook, each with its own button to call or write with one tap.</p>
+      <ul><li>Whoever is having fun at your party sees how to hire you right when they feel like it most.</li><li>You type your details once in Settings and they show up on every request page.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="lights">
+  <div class="bg"><img src="../media/luces.jpg" alt="" loading="lazy"></div>
+  <div class="wrap in rv">
+    <span class="lab d">Round 4</span>
+    <h3 class="d">Light up<br><span class="red">the floor</span></h3>
+    <p>The lights pulse with the beat and change color on every bar. You turn them on from the deck, and when the party ends they go back to how they were.</p>
+    <div class="brands"><span>WiZ</span><span>WLED</span><span>Govee</span><span>Philips Hue</span><span>DMX over the network</span></div>
+  </div>
+</section>
+
+<section class="plans" id="pro">
+  <div class="wrap">
+    <div class="hd rv"><span class="lab d">Free or PRO</span><h2 class="d">Start <span class="red">free</span></h2><p>Try the automatic mixer without paying. When you want the whole console, go PRO.</p></div>
+    <div class="pcs rv">
+      <div class="pc"><h3 class="d">Free</h3><p class="sb">To get to know the app</p>
+        <ul><li>Automatic mixing and song list</li><li>45 minutes of music a day</li><li>4 sounds in the sampler</li><li class="no">Manual mode</li><li class="no">Sets, equalizer, lights</li><li class="no">MIDI controller and requests by QR</li></ul></div>
+      <div class="pc pro"><span class="rib">EVERYTHING ELSE</span><h3 class="d gold">PRO</h3><p class="sb">The full console, no hour limit</p>
+        <ul><li>Everything free, with no time limit</li><li>Manual mode with both decks</li><li>Sets by folder and 10-band equalizer</li><li>Lights that follow the music</li><li>MIDI controller</li><li>Requests by QR and your booking details</li><li>Sampler: 19 buttons and an unlimited gallery</li></ul>
+        <div class="price"><div class="best"><b>49.99</b><span>USD per year</span><small>save almost 40%</small></div><div><b>6.99</b><span>USD per month</span><small>cancel anytime</small></div></div>
+        <p class="fine">Billed through Google Play when the app is available.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="nums">
+  <div class="wrap row5 rv">
+    <div><b data-n="2">0</b><span>Decks</span></div>
+    <div><b data-n="8">0</b><span>Hot cues per deck</span></div>
+    <div><b data-n="10">0</b><span>Equalizer bands</span></div>
+    <div><b data-n="70">0</b><span>MIDI functions</span></div>
+    <div><b>∞</b><span>Sounds in the gallery</span></div>
+  </div>
+</section>
+
+<section class="bell" id="bell">
+  <div class="wrap rv">
+    <h2 class="d">Ready for<br><span class="red">the first round?</span></h2>
+    <p>Musicologo · El Combate is in development and is coming to Google Play.</p>
+    <span class="big soon">Coming soon</span>
+  </div>
+</section>
+</main>
+
+<footer><span><b>MUSICOLOGO</b> · EL COMBATE</span><span><a href="../privacy.html" style="color:inherit">Privacy</a> · by vezzulab</span></footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var topbar=$('#topbar'),sb=false,busy=false;
+  var pars=matchMedia('(hover:hover) and (pointer:fine)').matches?[].slice.call(document.querySelectorAll('[data-par]')):[];
+  function frame(){busy=false;var s=scrollY>40;if(s!==sb){sb=s;topbar.classList.toggle('s',s)}
+    for(var i=0;i<pars.length;i++){var r=pars[i].getBoundingClientRect();if(r.bottom<-100||r.top>innerHeight+100)continue;var c=(r.top+r.height/2-innerHeight/2)/innerHeight;pars[i].style.setProperty('--py',(c*-40).toFixed(1)+'px')}}
+  function onScroll(){if(!busy){busy=true;requestAnimationFrame(frame)}}
+  addEventListener('scroll',onScroll,{passive:true});frame();
+  // the hero video only runs while it is on screen (saves battery)
+  var v=$('#bgv');
+  if(v){
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+    else new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.01}).observe(v);
+  }
+  var vis=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('paused',!e.isIntersecting)})},{rootMargin:'120px'});
+  [].forEach.call(document.querySelectorAll('.hero,.tapew'),function(el){vis.observe(el)});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('on');io.unobserve(e.target);
+    [].forEach.call(e.target.querySelectorAll('[data-n]'),function(b){var n=+b.dataset.n,t0=performance.now();(function f(t){var k=Math.min(1,(t-t0)/1100);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})})},{threshold:.12});
+  [].forEach.call(document.querySelectorAll('.rv'),function(el){io.observe(el)});
+
+  /* ---- the sampler: the real sounds of the app, a gallery without limit, 19 buttons ---- */
+  var SND=[["corneta-1","Horn 1"],["corneta-2","Horn 2"],["corneta-eco","Echo horn"],["corneta-triste","Sad horn"],["sirena","Siren"],["explosion","Explosion"],["escopeta","Shotgun"],["metralla","Machine gun"],["omg","OMG"],["some-points","Points"],["foll","Foll"],["canelilla","Canelilla"],["hoy-se-bebe","Se bebe"],["comooo","Cómooo"],["adivinen","Adivinen"],["ala-jaza","Ala Jaza"],["sujeto","Sujeto"],["alarma","Alarm"],["trae-el-saco","Bring the bag"],["brutal","Brutal"],["eh-mentira","Mentira"],["peluche","Peluche"],["la-grena","La greña"],["fofito","Fofito"]];
+  var MAXP=19, on={}, order=[], ac,an,master,buf=new Uint8Array(128),cache={},pulse=0,drawing=false;
+  SND.slice(0,MAXP).forEach(function(x){on[x[0]]=1;order.push(x[0])});
+  var msg=$('#msg'), cv=$('#cv'), cx=cv.getContext('2d'), padsEl=$('#pads'), gal=$('#gal'), gallist=$('#gallist');
+  function name(f){for(var i=0;i<SND.length;i++)if(SND[i][0]===f)return SND[i][1];return f}
+  var raw={};           // downloaded but not decoded yet (decoding needs the audio context, which needs a finger lifted)
+  var unlocked=false, silent=null;
+  try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}   // iPhone: sound even with the silent switch on
+  function init(){
+    if(ac)return;
+    ac=new (window.AudioContext||window.webkitAudioContext)();
+    master=ac.createGain();master.gain.value=.95;an=ac.createAnalyser();an.fftSize=256;an.smoothingTimeConstant=.7;
+    master.connect(an);an.connect(ac.destination);
+  }
+  /** Phones only allow sound after a finger is LIFTED (touchend/click): this runs on the first one, anywhere on the page. */
+  function unlock(){
+    if(unlocked&&ac&&ac.state==='running')return;
+    init();
+    var p=ac.resume&&ac.resume(); if(p&&p.catch)p.catch(function(){});
+    try{var b=ac.createBuffer(1,1,22050),s=ac.createBufferSource();s.buffer=b;s.connect(ac.destination);s.start(0)}catch(e){}
+    // iPhone: the ringer switch mutes Web Audio unless an <audio> element has played once
+    if(!silent){try{silent=new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');silent.setAttribute('playsinline','');silent.play().catch(function(){})}catch(e){}}
+    if(ac.state==='running')unlocked=true;
+    SND.forEach(function(x){load(x[0])});
+  }
+  ['touchend','pointerup','click','keydown'].forEach(function(t){addEventListener(t,unlock,{capture:true,passive:true})});
+  /* ---- the voice of the brand: "Musicologo · El Combate" once, on load if the browser allows it, otherwise on the first tap ---- */
+  (function(){
+    var intro=new Audio('../combate.mp3'),done=false;intro.preload='auto';intro.volume=.9;intro.setAttribute('playsinline','');
+    function go(){
+      if(done)return;
+      var p=intro.play();
+      if(p&&p.then)p.then(function(){done=true;off()},function(){});else done=true;
+    }
+    function tap(e){
+      if(e.type==='keydown'&&e.key==='Tab')return;
+      if(e.target&&e.target.closest&&e.target.closest('#pads,#gal'))return;   // a sampler tap must sound alone
+      go();
+    }
+    function off(){['touchend','click','keydown'].forEach(function(t){removeEventListener(t,tap,true)})}
+    ['touchend','click','keydown'].forEach(function(t){addEventListener(t,tap,{capture:true,passive:true})});
+    go();
+    document.addEventListener('visibilitychange',function(){if(document.hidden)intro.pause()});
+  })();
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&ac&&ac.state!=='running'){var p=ac.resume();if(p&&p.catch)p.catch(function(){})}});
+  // the files are downloaded right away, so the first tap has no wait
+  SND.forEach(function(x){raw[x[0]]=fetch('../audio/'+x[0]+'.mp3').then(function(r){return r.arrayBuffer()}).catch(function(){return null})});
+  function load(f){
+    if(cache[f])return cache[f];
+    return cache[f]=raw[f].then(function(b){if(!b)throw 0;return new Promise(function(ok,no){ac.decodeAudioData(b.slice(0),ok,no)})});
+  }
+  /** Plays a sound; if the audio is still asleep it waits for it to wake instead of playing into silence. */
+  /** Safety net for phones: a plain <audio> started right inside the touch always sounds, even while Web Audio is still asleep. */
+  var tags={};
+  function playTag(f,el){
+    try{
+      var a=tags[f]; if(!a||!a.paused){a=new Audio('../audio/'+f+'.mp3');a.preload='auto';a.setAttribute('playsinline','');tags[f]=a}
+      a.currentTime=0;a.volume=.95;
+      var p=a.play(); if(p&&p.catch)p.catch(function(){msg.textContent='TURN UP THE MEDIA VOLUME'});
+      if(el){el.classList.add('h');setTimeout(function(){el.classList.remove('h')},900)}
+      pulse=1;msg.textContent=name(f).toUpperCase();draw();
+    }catch(e){}
+  }
+  function play(f,el){
+    if(!ac||ac.state!=='running'){
+      playTag(f,el);                       // right now, inside the touch
+      init(); var rp=ac.resume&&ac.resume(); if(rp&&rp.catch)rp.catch(function(){});
+      SND.forEach(function(x){load(x[0])});
+      return;
+    }
+    if(el)el.classList.add('h');
+    var wake=(ac.state==='running')?Promise.resolve():(function(){var p=ac.resume();return (p&&p.then)?p.catch(function(){}):Promise.resolve()})();
+    Promise.all([load(f),wake]).then(function(r){
+      var b=r[0];
+      if(ac.state!=='running'){msg.textContent='TAP AGAIN TO TURN THE SOUND ON';if(el)el.classList.remove('h');return}
+      var s=ac.createBufferSource();s.buffer=b;s.connect(master);s.start();
+      if(el)setTimeout(function(){el.classList.remove('h')},Math.min(b.duration*1000,1500));
+      pulse=1;msg.textContent=name(f).toUpperCase();draw();
+    }).catch(function(){if(el)el.classList.remove('h');msg.textContent='COULD NOT LOAD THE SOUND'});
+  }
+  function count(){return order.length}
+  function renderPads(){
+    padsEl.innerHTML='';
+    order.forEach(function(f){
+      var b=document.createElement('button');b.className='pad';b.innerHTML='<span></span>';b.firstChild.textContent=name(f);
+      var downAt=0;
+      b.addEventListener('pointerdown',function(e){downAt=e.timeStamp;played=false;if(ac&&ac.state==='running'){played=true;play(f,b)}});
+      var played=false;
+      // iPhone only counts touchend/click as a real tap for sound (pointerup does not), so the first tap plays from the click
+      b.addEventListener('click',function(e){if(!played)play(f,b);played=false});
+      b.addEventListener('contextmenu',function(e){e.preventDefault()});
+      padsEl.appendChild(b);
+    });
+    for(var i=order.length;i<MAXP;i++){var e=document.createElement('div');e.className='pad e';padsEl.appendChild(e)}
+    var pl=document.createElement('button');pl.className='pad plus';pl.innerHTML='+<small>GALLERY</small>';pl.setAttribute('aria-label','Open the sound gallery');
+    pl.addEventListener('click',function(){gal.hidden=!gal.hidden;if(!gal.hidden)gal.scrollIntoView({behavior:'smooth',block:'nearest'})});
+    padsEl.appendChild(pl);
+    $('#cntv').textContent=count();
+  }
+  function renderGal(){
+    gallist.innerHTML='';
+    SND.forEach(function(x){
+      var f=x[0],row=document.createElement('div');row.className='gi';
+      var sp=document.createElement('span');sp.textContent=x[1];if(!on[f])sp.className='off';
+      var pv=document.createElement('button');pv.className='pl';pv.textContent='▶';pv.addEventListener('click',function(){play(f,null)});
+      var tg=document.createElement('button');
+      if(on[f]){tg.className='q';tg.textContent='REMOVE';tg.addEventListener('click',function(){delete on[f];order=order.filter(function(o){return o!==f});renderPads();renderGal()})}
+      else{tg.className='p';tg.textContent='ADD';tg.addEventListener('click',function(){
+        if(count()>=MAXP){msg.textContent='THERE ARE ALREADY 19 IN THE SAMPLER · REMOVE ONE';return}
+        on[f]=1;order.push(f);renderPads();renderGal()})}
+      row.appendChild(sp);row.appendChild(pv);row.appendChild(tg);gallist.appendChild(row);
+    });
+  }
+  $('#galx').addEventListener('click',function(){gal.hidden=true});
+  renderPads();renderGal();
+  var vg=$('.vglow'),sg=$('.sglow'),rys={style:{}};
+  function setBeat(b){var v=b.toFixed(2);vg.style.opacity=(b*.8).toFixed(2);sg.style.opacity=v;}
+  function draw(){
+    if(!an||drawing)return; drawing=true;
+    (function f(){
+      an.getByteFrequencyData(buf);
+      cx.clearRect(0,0,cv.width,cv.height);
+      var n=64,w=cv.width/n,e=0;
+      for(var i=0;i<n;i++){var v=buf[i]/255;e+=v;var h=Math.max(3,v*cv.height*.95);
+        var g=cx.createLinearGradient(0,cv.height,0,cv.height-h);g.addColorStop(0,'#ff2a36');g.addColorStop(.6,'#ff9a4a');g.addColorStop(1,'#ffd9b8');cx.fillStyle=g;cx.fillRect(i*w+2,cv.height-h,w-4,h)}
+      pulse*=.9;var b=Math.min(1,Math.max(e/n*2.2,pulse*.8));
+      setBeat(b);
+      if(b>.02)requestAnimationFrame(f);else{drawing=false;setBeat(0);msg.textContent='TAP A BUTTON'}
+    })();
+  }
+  if(location.hash==='#perf'){var d=[],last=0,box=document.createElement('div');box.style.cssText='position:fixed;left:4px;bottom:4px;z-index:99999;background:#000;color:#0f0;font:12px monospace;padding:4px 6px;border:1px solid #0f0;white-space:pre';document.body.appendChild(box);
+    (function f(t){if(last)d.push(t-last);last=t;requestAnimationFrame(f)})(0);
+    setInterval(function(){if(d.length<8)return;var a=d.slice().sort(function(x,y){return x-y}),n=a.length,avg=a.reduce(function(q,x){return q+x},0)/n,p95=a[Math.floor(n*.95)],j=a.filter(function(x){return x>34}).length;box.textContent='fps '+(1000/avg).toFixed(0)+'  p95 '+p95.toFixed(0)+'ms  slow '+(100*j/n).toFixed(0)+'%';d=[]},1500)}
+})();
+</script>
+</body>
+</html>
